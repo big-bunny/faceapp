@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.rbc-today {
+  background-color: #77bbff !important;
+  width: fit-content !important;
+}
+
+.MuiFormLabel-root {
+  display: none !important;
+}
+
+.MuiFormControl-root {
+  border: none !important;
+  height: "15px" !important;
+}
+.MuiFormControl-root
+  .MuiTextField-root
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.react-datepicker-ignore-onclickoutside
+  .react-datepicker-wrapper
+  .react-datepicker__input-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: none !important;
+}
+
+.css-yrdy0g-MuiDataGrid-columnHeaderRow {
+  color: "white" !important;
+}

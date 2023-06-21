@@ -1,0 +1,61 @@
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import React, { Component } from 'react';
+
+interface StaffMember {
+  id: number;
+  name: string;
+  position: string;
+  image: string;
+}
+
+const staffMembers: StaffMember[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    position: "Principal",
+    image: "/images/staff/staff1.jpg",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    position: "Teacher",
+    image: "/images/staff/staff2.jpg",
+  },
+  {
+    id: 3,
+    name: "David Johnson",
+    position: "Counselor",
+    image: "/images/staff/staff3.jpg",
+  },
+  // Add more staff members as needed
+];
+
+class Team extends Component {
+  render() {
+    return (
+        <>
+        <Header />
+        <div className="bg-gray-100 min-h-screen">
+        
+            <main className="max-w-4xl mx-auto py-8">
+                <h1 className="text-3xl font-bold mb-4">Our Team</h1>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {staffMembers.map((staffMember) => (
+                        <div key={staffMember.id} className="bg-white rounded shadow p-6">
+                            <img src={staffMember.image} alt={staffMember.name} className="w-full h-32 object-cover mb-4" />
+                            <h3 className="text-xl font-semibold">{staffMember.name}</h3>
+                            <p className="text-gray-700">{staffMember.position}</p>
+                        </div>
+                    ))}
+                </div>
+            </main>
+
+
+        </div><Footer /></>
+    );
+  }
+}
+
+export default Team;
