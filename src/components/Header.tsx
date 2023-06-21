@@ -1,88 +1,141 @@
-import React, { useState } from 'react';
-import AboutPage from './About';
-import Link from 'next/link';
-import router from 'next/router';
+import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useState, useEffect, useRef } from "react";
+import { Transition } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
+import type { Session } from "next-auth";
 
-const Header = ({ isAuthenticated }) => {
+function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const handleLogout = () => {
-    // Implement logout functionality
-  };
+  const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
+  const dropdownRef = useRef(null);
+  const { data: session, status: sessionStatus } = useSession();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleLogoClick = () => {
-    router.push('/Dashboard');
+    router.push("/Dashboard");
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    const handleClickOutsideDropdown = (event: { target: any }) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutsideDropdown);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutsideDropdown);
+    };
+  }, []);
+
+  const navigationItems = [
+    { href: "/home", text: "Home" },
+    { href: "/about", text: "About" },
+    { href: "#", text: "Sponsor", subItems: [{ href: "/child", text: "Child" }, { href: "/program", text: "Program" }] },
+    { href: "/team", text: "Team" },
+    { href: "/gallery", text: "Gallery" },
+  ];
+
+  const menuItems = navigationItems.map((item) => (
+    <li key={item.href} className="relative">
+      <Link href={item.href} passHref legacyBehavior>
+        <a className="text-gray-600 hover:text-gray-400">{item.text}</a>
+      </Link>
+      {item.subItems && (
+        <div className="pl-4">
+          <ul>
+            {item.subItems.map((subItem) => (
+              <li key={subItem.href}>
+                <Link href={subItem.href} passHref legacyBehavior>
+                  <a className="block py-2 text-gray-600 hover:text-gray-400">{subItem.text}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </li>
+  ));
+
+  const dropdownTransition = (
+    <Transition
+      show={isDropdownOpen}
+      enter="transition ease-out duration-100 transform"
+      enterFrom="opacity-0 scale-95"
+      enterTo="opacity-100 scale-100"
+      leave="transition ease-in duration-75 transform"
+      leaveFrom="opacity-100 scale-100"
+      leaveTo="opacity-0 scale-95"
+    >
+      <Transition.Child
+        enter="opacity-0"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="opacity-100"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <div className="md:hidden bg-white py-2 px-4" ref={dropdownRef}>
+          <ul>{menuItems}</ul>
+        </div>
+      </Transition.Child>
+    </Transition>
+  );
+
   return (
-    <header className="bg-gray-900 text-white py-4 px-8">
-    <h1 className="text-2xl font-bold cursor-pointer" onClick={handleLogoClick}>
-        Schield Centre
-      </h1>
-      <nav className="mt-4 flex justify-between items-center">
-        <ul className="flex space-x-4">
-          <li>
-            <Link href="/home" className="hover:text-gray-400">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" legacyBehavior>
-              About
-            </Link>
-
-          </li>
-          <li className="relative">
-            <a href="#" className="hover:text-gray-400" onClick={toggleDropdown}>
-              Sponsor
-            </a>
-            {isDropdownOpen && (
-              <div className="absolute left-0 mt-2 w-40 bg-red-300 shadow-md rounded-md py-2">
-                <ul>
-                  <li>
-                    <Link href="/child">
-                      Child
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/program">
-                      Program
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+    <header className={`${isScrolled ? "fixed top-0 left-0 right-0  shadow-lg" : ""}`}>
+      <div className="container mx-auto py-4 px-6 bg-gray-200 flex items-center justify-between">
+        <h1 className="text-2xl font-bold cursor-pointer" onClick={handleLogoClick}>
+          Schield Centre
+        </h1>
+        <nav className="hidden md:block">
+          <ul className="flex space-x-4">{menuItems}</ul>
+        </nav>
+        <div className="md:hidden">
+          <button className="focus:outline-none" onClick={toggleDropdown} aria-label="Toggle menu">
+            {isDropdownOpen ? (
+              <XIcon className="h-6 w-6 text-gray-600" />
+            ) : (
+              <MenuIcon className="h-6 w-6 text-gray-600" />
             )}
-          </li>
-          <li>
-            <Link href="/team" className="hover:text-gray-400">
-              Team
-            </Link>
-          </li>
-          <li>
-            <Link href="/gallery" className="hover:text-gray-400">
-              Gallery
-            </Link>
-          </li>
-        </ul>
-
-        {isAuthenticated ? (
-          <button
-            className="bg-gray-800 text-white px-4 py-2 rounded"
-            onClick={handleLogout}
-          >
-            Logout
           </button>
-        ) : (
-          <Link href="#" className="bg-gray-800 text-white px-4 py-2 rounded">
-            Login
-          </Link>
-        )}
-      </nav>
+        </div>
+        <div>
+          {session ? (
+            <button className="text-gray-600 hover:text-gray-400" onClick={() => signOut()}>
+              Sign Out
+            </button>
+          ) : (
+            <button
+              className="text-gray-600 hover:text-gray-400"
+              onClick={() => signIn()}
+              disabled={sessionStatus === "loading"}
+            >
+              {sessionStatus === "loading" ? "Signing in..." : "Sign In"}
+            </button>
+          )}
+        </div>
+      </div>
+      {dropdownTransition}
     </header>
   );
-};
+}
 
 export default Header;

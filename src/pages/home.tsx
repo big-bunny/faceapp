@@ -29,19 +29,19 @@ class Home extends Component {
     // Example data for testimonials
     const testimonials = [
       {
-        id: 1,
+        id: 4,
         quote: 'Testimonial 1 text.',
         author: 'John Doe',
         image: 'images/testimonials/testimoial1.jpg',
       },
       {
-        id: 2,
+        id: 5,
         quote: 'Testimonial 2 text.',
         author: 'Jane Smith',
         image: 'images/testimonials/testimoial1.jpg',
       },
       {
-        id: 3,
+        id: 6,
         quote: 'Testimonial 3 text.',
         author: 'David Johnson',
         image: 'images/testimonials/testimoial1.jpg',
