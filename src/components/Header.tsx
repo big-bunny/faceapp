@@ -18,14 +18,19 @@ const Header: React.FC = () => {
   const { data: session, status } = useSession(); // Get the session data and status using the useSession hook
   const loading = status === 'loading'; // Check if the session status is loading
 
+  // Define the menu links
+  const menuLinks = [
+    { href: '/home', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
+  ];
+
   return (
     <header className="bg-gray-600 rounded-3xl">
       <nav className="container mx-auto">
         <div className="flex items-center justify-between p-4">
           <Link href="/" legacyBehavior>
-            <a className="text-white text-3xl font-bold">
-              Schield Centre
-            </a>
+            <a className="text-white text-3xl font-bold">Schield Centre</a>
           </Link>
           {/* Hamburger menu */}
           <div className="md:hidden">
@@ -54,21 +59,13 @@ const Header: React.FC = () => {
         {/* Mobile menu */}
         {isMenuOpen && (
           <ul className="md:hidden bg-gray-900 text-white px-4 py-2">
-            <li>
-              <a href="/home" className="block text-xl font-bold py-2">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/about" className="block py-2">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="/contact" className="block py-2">
-                Contact
-              </a>
-            </li>
+            {menuLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="block text-xl font-bold py-2">
+                  {link.label}
+                </a>
+              </li>
+            ))}
             <li>
               <a href="#" onClick={toggleDropdown} className="block py-2">
                 Sponsor
@@ -130,27 +127,19 @@ const Header: React.FC = () => {
               )}
             </li>
             <li className="mt-4">
-              <Donate /> {/* Add the DonateButton component */}
+              <Donate />
             </li>
           </ul>
         )}
         {/* Desktop menu */}
         <ul className="hidden md:flex items-center justify-between p-4">
-          <li>
-            <a href="/home" className="text-black font-bold text-xl">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="/about" className="text-black hover:text-green-300">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="/contact" className="text-black hover:text-green-300">
-              Contact
-            </a>
-          </li>
+          {menuLinks.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} className="text-black font-bold text-xl">
+                {link.label}
+              </a>
+            </li>
+          ))}
           <li className="relative">
             <a href="#" onClick={toggleDropdown} className="text-black hover:text-green-300">
               Sponsor
@@ -170,7 +159,6 @@ const Header: React.FC = () => {
               </ul>
             )}
           </li>
-        
           <li>
             <div className="flex items-center">
               {!session && (
@@ -215,7 +203,7 @@ const Header: React.FC = () => {
             </div>
           </li>
           <li className="ml-4">
-            <Donate/> {/* Add the DonateButton component */}
+            <Donate />
           </li>
         </ul>
       </nav>
@@ -224,3 +212,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+

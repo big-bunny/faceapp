@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import Link from 'next/link';
 import React, { Component } from 'react';
 
 export class ProgramSponsorship extends Component {
@@ -65,9 +66,12 @@ export class ProgramSponsorship extends Component {
                     </div>
                   </div>
                   <p className="text-gray-700 mb-4">{program.description}</p>
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-                    Sponsor Now
-                  </button>
+                  <Link
+                   href="/donatepage"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Donate
+                  </Link>
                 </div>
               ))}
             </div>

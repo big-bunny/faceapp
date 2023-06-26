@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DonateButton from './Donate';
+
 
 export class Dashboard extends Component {
   render() {

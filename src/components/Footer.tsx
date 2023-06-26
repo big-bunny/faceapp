@@ -1,8 +1,10 @@
 import React from 'react';
+import Contactus from './Contactus';
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-4 px-8 text-center">
+      <Contactus />
       <p>&copy; {new Date().getFullYear()} Schield Centre. All rights reserved.</p>
       <nav className="mt-4">
         <ul className="flex justify-center space-x-4">
