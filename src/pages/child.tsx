@@ -1,3 +1,4 @@
+import Donate from '@/components/Donate';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import React, { Component } from 'react';
@@ -65,9 +66,7 @@ export class Child extends Component {
                     </div>
                   </div>
                   <p className="text-gray-700 mb-4">{child.description}</p>
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-                    Donate with PayPal
-                  </button>
+                  {/* <Donate /> */}
                 </div>
               ))}
             </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DonateButton from './Donate';
 
 export class Dashboard extends Component {
   render() {
@@ -42,6 +43,7 @@ export class Dashboard extends Component {
             <li className="mb-2">Library Catalog</li>
           </ul>
         </div>
+   
       </div>
     );
   }

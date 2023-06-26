@@ -1,141 +1,226 @@
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useState, useEffect, useRef } from "react";
-import { Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { useRouter } from "next/router";
-import type { Session } from "next-auth";
+import React, { useState } from 'react';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import Donate from '@/components/Donate';
 
-function Header() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
-  const dropdownRef = useRef(null);
-  const { data: session, status: sessionStatus } = useSession();
+const Header: React.FC = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to track whether the dropdown is open or closed
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track whether the mobile menu is open or closed
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen(!isDropdownOpen); // Function to toggle the dropdown state
   };
 
-  const handleLogoClick = () => {
-    router.push("/Dashboard");
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen); // Function to toggle the mobile menu state
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    const handleClickOutsideDropdown = (event: { target: any }) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("mousedown", handleClickOutsideDropdown);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("mousedown", handleClickOutsideDropdown);
-    };
-  }, []);
-
-  const navigationItems = [
-    { href: "/home", text: "Home" },
-    { href: "/about", text: "About" },
-    { href: "#", text: "Sponsor", subItems: [{ href: "/child", text: "Child" }, { href: "/program", text: "Program" }] },
-    { href: "/team", text: "Team" },
-    { href: "/gallery", text: "Gallery" },
-  ];
-
-  const menuItems = navigationItems.map((item) => (
-    <li key={item.href} className="relative">
-      <Link href={item.href} passHref legacyBehavior>
-        <a className="text-gray-600 hover:text-gray-400">{item.text}</a>
-      </Link>
-      {item.subItems && (
-        <div className="pl-4">
-          <ul>
-            {item.subItems.map((subItem) => (
-              <li key={subItem.href}>
-                <Link href={subItem.href} passHref legacyBehavior>
-                  <a className="block py-2 text-gray-600 hover:text-gray-400">{subItem.text}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </li>
-  ));
-
-  const dropdownTransition = (
-    <Transition
-      show={isDropdownOpen}
-      enter="transition ease-out duration-100 transform"
-      enterFrom="opacity-0 scale-95"
-      enterTo="opacity-100 scale-100"
-      leave="transition ease-in duration-75 transform"
-      leaveFrom="opacity-100 scale-100"
-      leaveTo="opacity-0 scale-95"
-    >
-      <Transition.Child
-        enter="opacity-0"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="opacity-100"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
-      >
-        <div className="md:hidden bg-white py-2 px-4" ref={dropdownRef}>
-          <ul>{menuItems}</ul>
-        </div>
-      </Transition.Child>
-    </Transition>
-  );
+  const { data: session, status } = useSession(); // Get the session data and status using the useSession hook
+  const loading = status === 'loading'; // Check if the session status is loading
 
   return (
-    <header className={`${isScrolled ? "fixed top-0 left-0 right-0  shadow-lg" : ""}`}>
-      <div className="container mx-auto py-4 px-6 bg-gray-200 flex items-center justify-between">
-        <h1 className="text-2xl font-bold cursor-pointer" onClick={handleLogoClick}>
-          Schield Centre
-        </h1>
-        <nav className="hidden md:block">
-          <ul className="flex space-x-4">{menuItems}</ul>
-        </nav>
-        <div className="md:hidden">
-          <button className="focus:outline-none" onClick={toggleDropdown} aria-label="Toggle menu">
-            {isDropdownOpen ? (
-              <XIcon className="h-6 w-6 text-gray-600" />
-            ) : (
-              <MenuIcon className="h-6 w-6 text-gray-600" />
-            )}
-          </button>
-        </div>
-        <div>
-          {session ? (
-            <button className="text-gray-600 hover:text-gray-400" onClick={() => signOut()}>
-              Sign Out
-            </button>
-          ) : (
+    <header className="bg-gray-600 rounded-3xl">
+      <nav className="container mx-auto">
+        <div className="flex items-center justify-between p-4">
+          <Link href="/" legacyBehavior>
+            <a className="text-white text-3xl font-bold">
+              Schield Centre
+            </a>
+          </Link>
+          {/* Hamburger menu */}
+          <div className="md:hidden">
             <button
-              className="text-gray-600 hover:text-gray-400"
-              onClick={() => signIn()}
-              disabled={sessionStatus === "loading"}
+              type="button"
+              className="text-white hover:text-green-300 focus:outline-none"
+              onClick={toggleMenu}
             >
-              {sessionStatus === "loading" ? "Signing in..." : "Sign In"}
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
             </button>
-          )}
+          </div>
         </div>
-      </div>
-      {dropdownTransition}
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <ul className="md:hidden bg-gray-900 text-white px-4 py-2">
+            <li>
+              <a href="/home" className="block text-xl font-bold py-2">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/about" className="block py-2">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="/contact" className="block py-2">
+                Contact
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={toggleDropdown} className="block py-2">
+                Sponsor
+              </a>
+              {isDropdownOpen && (
+                <ul className="ml-4 bg-white text-gray-900 rounded-md shadow-lg py-2">
+                  <li>
+                    <a href="/child" className="block py-2 hover:text-blue-500">
+                      Child
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/program" className="block py-2 hover:text-blue-500">
+                      Program
+                    </a>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li>
+              {!session && (
+                <>
+                  <span className="mr-2">You are not signed in</span>
+                  <a
+                    href={`/api/auth/signin`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signIn();
+                    }}
+                    className="text-white hover:text-green-300"
+                  >
+                    Sign in
+                  </a>
+                </>
+              )}
+              {session?.user && (
+                <>
+                  <div
+                    className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
+                    style={{ backgroundImage: `url(${session.user.image})` }}
+                  />
+                  <div>
+                    <small className="block">Signed in as</small>
+                    <strong className="block text-white">
+                      {session.user.email || session.user.name}
+                    </strong>
+                  </div>
+                  <a
+                    href={`/api/auth/signout`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signOut();
+                    }}
+                    className="text-white hover:text-green-300 ml-4"
+                  >
+                    Sign out
+                  </a>
+                </>
+              )}
+            </li>
+            <li className="mt-4">
+              <Donate /> {/* Add the DonateButton component */}
+            </li>
+          </ul>
+        )}
+        {/* Desktop menu */}
+        <ul className="hidden md:flex items-center justify-between p-4">
+          <li>
+            <a href="/home" className="text-black font-bold text-xl">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/about" className="text-black hover:text-green-300">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="/contact" className="text-black hover:text-green-300">
+              Contact
+            </a>
+          </li>
+          <li className="relative">
+            <a href="#" onClick={toggleDropdown} className="text-black hover:text-green-300">
+              Sponsor
+            </a>
+            {isDropdownOpen && (
+              <ul className="absolute top-10 right-0 bg-white text-gray-900 rounded-md shadow-lg p-2">
+                <li>
+                  <a href="/child" className="block py-2 hover:text-blue-500">
+                    Child
+                  </a>
+                </li>
+                <li>
+                  <a href="/program" className="block py-2 hover:text-blue-500">
+                    Program
+                  </a>
+                </li>
+              </ul>
+            )}
+          </li>
+        
+          <li>
+            <div className="flex items-center">
+              {!session && (
+                <>
+                  <span className="mr-2">You are not signed in</span>
+                  <a
+                    href={`/api/auth/signin`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signIn();
+                    }}
+                    className="text-black hover:text-green-300"
+                  >
+                    Sign in
+                  </a>
+                </>
+              )}
+              {session?.user && (
+                <>
+                  <div
+                    className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
+                    style={{ backgroundImage: `url(${session.user.image})` }}
+                  />
+                  <div>
+                    <small className="block">Signed in as</small>
+                    <strong className="block text-black">
+                      {session.user.email || session.user.name}
+                    </strong>
+                  </div>
+                  <a
+                    href={`/api/auth/signout`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signOut();
+                    }}
+                    className="text-black hover:text-green-300 ml-4"
+                  >
+                    Sign out
+                  </a>
+                </>
+              )}
+            </div>
+          </li>
+          <li className="ml-4">
+            <Donate/> {/* Add the DonateButton component */}
+          </li>
+        </ul>
+      </nav>
     </header>
   );
-}
+};
 
 export default Header;
