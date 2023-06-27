@@ -1,3 +1,4 @@
+import DefaultLayout from '@/components/DefaultLayout';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import React, { Component, useState, useRef, useEffect } from 'react';
@@ -99,8 +100,8 @@ const Gallery: React.FC = () => {
 
   return (
     <>
-      <Header isAuthenticated={undefined} />
-      <div className="bg-gray-100 min-h-screen">
+        <DefaultLayout>
+      <div className=" min-h-screen">
         <main className="max-w-4xl mx-auto py-8">
           <h1 className="text-3xl font-bold mb-4">Gallery</h1>
 
@@ -148,8 +149,8 @@ const Gallery: React.FC = () => {
           </div>
         </div>
       )}
-
-      <Footer />
+ </DefaultLayout>
+     
     </>
   );
 };

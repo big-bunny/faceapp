@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 export class Dashboard extends Component {
   render() {
     return (
-      <div className="bg-gray-200 min-h-screen p-8">
+      <div className=" min-h-screen p-8">
         <h1 className="text-3xl font-bold mb-8">Welcome to Schield Centre Dashboard</h1>
 
         {/* Display important information */}

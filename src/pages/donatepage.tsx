@@ -1,12 +1,14 @@
 
 
+import DefaultLayout from '@/components/DefaultLayout';
 import DonateButton from '@/components/Donate';
 import React from 'react';
 
 const DonationPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-500 flex items-center justify-center">
-      <div className="max-w-md w-full bg-white p-8 shadow">
+    <DefaultLayout>
+    <div className="min-h-screen  flex items-center justify-center">
+      <div className="max-w-md w-full backdrop-blur-3xl p-8 shadow">
         <h2 className="text-2xl mb-4">Who to thank for Donation</h2>
         <form>
           <div className="mb-4">
@@ -38,6 +40,7 @@ const DonationPage: React.FC = () => {
         </form>
       </div>
     </div>
+    </DefaultLayout>
   );
 };
 

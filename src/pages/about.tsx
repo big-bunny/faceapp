@@ -1,4 +1,5 @@
 "use client"
+import DefaultLayout from '@/components/DefaultLayout';
 import Header from '@/components/Header';
 import React, { useState, useEffect } from 'react';
 
@@ -51,7 +52,7 @@ const AboutPage = () => {
 
   return (
     <>
-    <Header/>
+     <DefaultLayout>
     <div id="about" className="mt-20 rounded-lg text-gray-700 my-8">
       <div className="container mx-auto px-8 py-10">
         <div className="flex flex-col lg:flex-row">
@@ -95,6 +96,7 @@ const AboutPage = () => {
         </div>
       </div>
     </div>
+    </DefaultLayout>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import DefaultLayout from '@/components/DefaultLayout';
 
 class Home extends Component {
   render() {
@@ -50,21 +51,21 @@ class Home extends Component {
 
     return (
       <>
-        <Header isAuthenticated={undefined} />
-        <div className="bg-gray-100 min-h-screen">
+        <DefaultLayout>
+        <div className=" min-h-screen">
          
 
           <main className="max-w-4xl mx-auto py-8">
             <section className="text-center">
               <h1 className="text-4xl font-bold mb-4">Welcome to the Schield Centre</h1>
               <p className="text-lg text-gray-700">Transforming lives through education and empowerment.</p>
-              <button className="bg-blue-500 text-white py-2 px-4 mt-6 rounded hover:bg-blue-600">
+              <button ref="/dashboard" className="bg-blue-500 text-white py-2 px-4 mt-6 rounded hover:bg-blue-600">
                 Learn More
               </button>
             </section>
 
             <section className="mt-12">
-              <h2 className="text-2xl font-bold mb-4">Our Programs</h2>
+              <h2 className="text-2xl align-self-lg-center font-bold mb-4">News</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {programs.map((program) => (
                   <div key={program.id} className="bg-white rounded shadow p-6">
@@ -98,7 +99,7 @@ class Home extends Component {
             </section>
           </main>
         </div>
-        <Footer />
+        </DefaultLayout>
       </>
     );
   }

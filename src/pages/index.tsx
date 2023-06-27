@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Fragment } from "react";
 import App from "next/dist/pages/_app";
+import DefaultLayout from "@/components/DefaultLayout";
 
 
 
@@ -18,7 +19,7 @@ export default  function Home() {
     <Fragment>
       <div className="flex flex-col h-full justify-between  ">
         {/* Navigation bar || header bar  */}
-        <Header isAuthenticated={undefined} />
+        <DefaultLayout>
 
         {/* main page content Dashboard */}
         <main className="flex w-full">
@@ -26,7 +27,7 @@ export default  function Home() {
         </main>
 
         {/* footer */}
-        <Footer />
+        </DefaultLayout>
       </div>
     </Fragment>
   );

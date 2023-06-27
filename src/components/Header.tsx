@@ -22,10 +22,14 @@ const Header: React.FC = () => {
   const menuLinks = [
     { href: '/home', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/team', label: 'Team' },
+    { href: '/', label: '' },
+    { href: '/', label: '' },
+    { href: '/', label: '' },
   ];
 
   return (
+    <div>
     <header className="bg-gray-600 rounded-3xl">
       <nav className="container mx-auto">
         <div className="flex items-center justify-between p-4">
@@ -127,7 +131,7 @@ const Header: React.FC = () => {
               )}
             </li>
             <li className="mt-4">
-              <Donate />
+            
             </li>
           </ul>
         )}
@@ -202,13 +206,18 @@ const Header: React.FC = () => {
               )}
             </div>
           </li>
-          <li className="ml-4">
-            <Donate />
-          </li>
+        
         </ul>
       </nav>
     </header>
-  );
+    <Link
+                   href="/donatepage"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Donate
+                  </Link>
+    </div> 
+     );
 };
 
 export default Header;

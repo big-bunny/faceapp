@@ -1,3 +1,4 @@
+import DefaultLayout from '@/components/DefaultLayout';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Link from 'next/link';
@@ -47,8 +48,8 @@ export class ProgramSponsorship extends Component {
 
     return (
       <>
-        <Header />
-        <div className="bg-gray-100 min-h-screen">
+         <DefaultLayout>
+        <div className=" min-h-screen">
           <main className="max-w-4xl mx-auto py-8">
             <h1 className="text-3xl font-bold mb-4">Program Sponsorship</h1>
 
@@ -77,7 +78,7 @@ export class ProgramSponsorship extends Component {
             </div>
           </main>
         </div>
-        <Footer />
+        </DefaultLayout>
       </>
     );
   }
