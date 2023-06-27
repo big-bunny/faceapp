@@ -116,7 +116,7 @@ const Gallery: React.FC = () => {
                   .map((item) => (
                     <div
                       key={item.id}
-                      className="bg-white rounded shadow p-6 cursor-pointer"
+                      className="bg-gray-200 rounded shadow p-6 cursor-pointer"
                       onClick={() => openModal(item.url)}
                     >
                       {item.type === 'image' && (

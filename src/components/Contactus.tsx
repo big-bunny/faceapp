@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faEnvelope, faMapMarker, faComments } from '@fortawesome/free-solid-svg-icons';
+import { faComments as farComments } from '@fortawesome/free-solid-svg-icons';
 
 const ContactSection: React.FC = () => {
   useEffect(() => {
@@ -18,17 +21,17 @@ const ContactSection: React.FC = () => {
   const contactInfo = [
     {
       title: 'Phone',
-      icon: 'fa-phone',
+      icon: faPhone,
       address: '+254110883547',
     },
     {
       title: 'E-mail',
-      icon: 'fa-envelope',
+      icon: faEnvelope,
       address: 'schieldcenter@gmail.com',
     },
     {
       title: 'Address',
-      icon: 'fa-map-marker',
+      icon: faMapMarker,
       address: 'Noosolian Namannga-Highway',
     },
   ];
@@ -47,7 +50,8 @@ const ContactSection: React.FC = () => {
                 {/* Displaying the contact information */}
                 {contactInfo.map((info) => (
                   <div key={info.title} className="flex font-medium pb-4">
-                    <i className={`fas mr-4 ${info.icon}`} /> {info.address}
+                    <FontAwesomeIcon icon={info.icon} className="mr-4" />
+                    {info.address}
                   </div>
                 ))}
               </div>
@@ -55,7 +59,7 @@ const ContactSection: React.FC = () => {
 
             {/* Icon for the contact section */}
             <div className="text-secondary">
-              <i className="far fa-comments fa-10x hidden lg:inline" />
+              <FontAwesomeIcon icon={farComments} className="fa-10x hidden lg:inline" />
             </div>
           </div>
         </nav>

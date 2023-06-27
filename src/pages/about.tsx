@@ -61,8 +61,8 @@ const AboutPage = () => {
               className="min-h-screen bg-fixed rounded-lg bg-no-repeat bg-cover bg-center"
               style={{ backgroundImage: `url('${currentCarousel.image}')` }}
             >
-              <div className="bg-green-400 bg-opacity-25 px-4 py-8 md:px-12 rounded-3xl shadow-md border border-red-500">
-                <div className="text-xl text-black font-bold leading-relaxed">
+              <div className="bg-green-500 bg-opacity-25 px-4 py-8 md:px-12 rounded-3xl shadow-md border border-red-500">
+                <div className="text-2xl text-black font-bold leading-relaxed">
                   <p>{currentCarousel.text}</p>
                 </div>
               </div>
@@ -70,11 +70,11 @@ const AboutPage = () => {
           </div>
 
           <div className="w-full lg:w-1/3 bg-gradient-to-r from-secondary to-accent rounded-3xl backdrop-blur-3xl shadow-md px-8 py-10 md:py-20 lg:px-12 flex flex-col">
-            <h2 className="text-3xl font-extrabold bg-gradient-to-r from-accent to-secondary text-gray-900 inline-block rounded-full px-6 py-2">
+            <h2 className="text-5xl font-extrabold bg-gradient-to-r from-accent to-secondary text-gray-900 inline-block rounded-full px-6 py-2">
               ABOUT SCHIELD CENTER
             </h2>
 
-            <div className="text-2xl text-center py-10">
+            <div className="text-3xl text-green-500 text-center py-10">
               <p>
                 Schield Center is a school located in Kajiado, officially established in 2008 by Patricia Schield,
                 an American woman who made a courageous decision. Patricia sold everything she owned and utilized her

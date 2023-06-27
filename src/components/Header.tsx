@@ -1,46 +1,139 @@
 import React, { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHome,
+  faUser,
+  faSignOutAlt,
+  faInfoCircle,
+  faUsers,
+  faImages,
+  faDonate,
+  faChild,
+  faHandsHelping,
+} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import Donate from '@/components/Donate';
 
 const Header: React.FC = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to track whether the dropdown is open or closed
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track whether the mobile menu is open or closed
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen); // Function to toggle the dropdown state
+    setIsDropdownOpen((prevState) => !prevState);
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Function to toggle the mobile menu state
+    setIsMenuOpen((prevState) => !prevState);
   };
 
-  const { data: session, status } = useSession(); // Get the session data and status using the useSession hook
-  const loading = status === 'loading'; // Check if the session status is loading
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
-  // Define the menu links
   const menuLinks = [
-    { href: '/home', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/team', label: 'Team' },
-    { href: '/', label: '' },
-    { href: '/', label: '' },
-    { href: '/', label: '' },
+    { href: '/home', label: 'Home', icon: faHome },
+    { href: '/about', label: 'About', icon: faInfoCircle },
+    { href: '/team', label: 'Team', icon: faUsers },
+    { href: '/gallery', label: 'Gallery', icon: faImages },
   ];
 
-  return (
-    <div>
-      <header className="bg-gray-600 rounded-3xl">
-        <nav className="container mx-auto">
-          <div className="flex items-center justify-between p-4">
-            <Link href="/" legacyBehavior>
-              Schield Centre
+  const renderMenuLinks = () => (
+    <>
+      {menuLinks.map((link) => (
+        <li key={link.href}>
+          <Link href={link.href} className="text-black font-bold text-2xl hover:text-green-300 ml-4">
+            <FontAwesomeIcon icon={link.icon} className="mr-2" />
+            {link.label}
+          </Link>
+        </li>
+      ))}
+    </>
+  );
+
+  const renderDropdown = () => (
+    <li className="relative">
+      <button onClick={toggleDropdown} className="text-black font-bold text-2xl hover:text-green-300 mt-2">
+        <FontAwesomeIcon icon={faDonate} className="mr-1" />
+        Sponsor
+      </button>
+      {isDropdownOpen && (
+        <ul className="absolute top-10 right-0 bg-white text-gray-900 rounded-md shadow-lg p-2">
+          <li>
+            <Link href="/child" className="block py-2 hover:text-blue-500">
+              <FontAwesomeIcon icon={faChild} className="mr-2" />
+              Child
             </Link>
-            {/* Hamburger menu */}
+          </li>
+          <li>
+            <Link href="/program" className="block py-2 hover:text-blue-500">
+              <FontAwesomeIcon icon={faHandsHelping} className="mr-2" />
+              Program
+            </Link>
+          </li>
+        </ul>
+      )}
+    </li>
+  );
+
+  const renderUserSection = () => {
+    if (!session) {
+      return (
+        <>
+          <span className="mr-2">You are not signed in</span>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              signIn();
+            }}
+            className="text-black hover:text-green-300"
+          >
+            <FontAwesomeIcon icon={faUser} className="mr-1" />
+            Sign in
+          </button>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <div className="flex items-center">
+          <div
+            className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
+            style={{ backgroundImage: `url(${session.user.image})` }}
+          />
+          <div>
+            <small className="block">Signed in as</small>
+            <strong className="block text-black">
+              {session.user.email || session.user.name}
+            </strong>
+          </div>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              signOut();
+            }}
+            className="text-black hover:text-green-300 ml-4"
+          >
+            <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
+            Sign out
+          </button>
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <div className="fixed top-0 w-full z-50">
+      <header className="backdrop-filter backdrop-blur-3xl rounded-3xl  shadow-md">
+        <nav className="container mx-auto px-4 md:px-8">
+          <div className="flex items-center justify-between py-4">
+            <div className="flex items-center space-x-4">
+              <img src="/logo.png" alt="Logo" className="h-8 w-8" />
+              <h1 className="text-3xl font-bold">Schield Centre</h1>
+            </div>
             <div className="md:hidden">
               <button
                 type="button"
-                className="text-white hover:text-green-300 focus:outline-none"
+                className="text-black hover:text-green-300 focus:outline-none"
                 onClick={toggleMenu}
               >
                 <svg
@@ -59,151 +152,44 @@ const Header: React.FC = () => {
                 </svg>
               </button>
             </div>
+            <ul className="hidden md:flex items-center space-x-4">
+              {renderMenuLinks()}
+              {renderDropdown()}
+              <li>{renderUserSection()}</li>
+            </ul>
           </div>
-          {/* Mobile menu */}
           {isMenuOpen && (
-            <ul className="md:hidden bg-gray-900 text-white px-4 py-2">
-              {menuLinks.map((link) => (
-                <li key={link.href}>
-                  {link.label}
-                </li>
-              ))}
-              <li>
-                <button onClick={toggleDropdown} className="block py-2">
+            <ul className="md:hidden backdrop-blur-4xl text-black px-4 py-2">
+              {renderMenuLinks()}
+              <li className="mt-2">
+                <button onClick={toggleDropdown} className="block font-bold text-2xl py-2">
+                  <FontAwesomeIcon icon={faDonate} className="mr-2" />
                   Sponsor
                 </button>
                 {isDropdownOpen && (
                   <ul className="ml-4 bg-white text-gray-900 rounded-md shadow-lg py-2">
                     <li>
                       <Link href="/child" className="block py-2 hover:text-blue-500">
+                        <FontAwesomeIcon icon={faChild} className="mr-2" />
                         Child
                       </Link>
                     </li>
                     <li>
                       <Link href="/program" className="block py-2 hover:text-blue-500">
+                        <FontAwesomeIcon icon={faHandsHelping} className="mr-2" />
                         Program
                       </Link>
                     </li>
                   </ul>
                 )}
               </li>
-              <li>
-                {!session && (
-                  <>
-                    <span className="mr-2">You are not signed in</span>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        signIn();
-                      }}
-                      className="text-white hover:text-green-300"
-                    >
-                      Sign in
-                    </button>
-                  </>
-                )}
-                {session?.user && (
-                  <>
-                    <div
-                      className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
-                      style={{ backgroundImage: `url(${session.user.image})` }}
-                    />
-                    <div>
-                      <small className="block">Signed in as</small>
-                      <strong className="block text-white">
-                        {session.user.email || session.user.name}
-                      </strong>
-                    </div>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        signOut();
-                      }}
-                      className="text-white hover:text-green-300 ml-4"
-                    >
-                      Sign out
-                    </button>
-                  </>
-                )}
-              </li>
-              <li className="mt-4"></li>
             </ul>
           )}
-          {/* Desktop menu */}
-          <ul className="hidden md:flex items-center justify-between p-4">
-            {menuLinks.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="text-black font-bold text-xl">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li className="relative">
-              <button onClick={toggleDropdown} className="text-black hover:text-green-300">
-                Sponsor
-              </button>
-              {isDropdownOpen && (
-                <ul className="absolute top-10 right-0 bg-white text-gray-900 rounded-md shadow-lg p-2">
-                  <li>
-                    <Link href="/child" className="block py-2 hover:text-blue-500">
-                      Child
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/program" className="block py-2 hover:text-blue-500">
-                      Program
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <div className="flex items-center">
-                {!session && (
-                  <>
-                    <span className="mr-2">You are not signed in</span>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        signIn();
-                      }}
-                      className="text-black hover:text-green-300"
-                    >
-                      Sign in
-                    </button>
-                  </>
-                )}
-                {session?.user && (
-                  <>
-                    <div
-                      className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
-                      style={{ backgroundImage: `url(${session.user.image})` }}
-                    />
-                    <div>
-                      <small className="block">Signed in as</small>
-                      <strong className="block text-black">
-                        {session.user.email || session.user.name}
-                      </strong>
-                    </div>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        signOut();
-                      }}
-                      className="text-black hover:text-green-300 ml-4"
-                    >
-                      Sign out
-                    </button>
-                  </>
-                )}
-              </div>
-            </li>
-          </ul>
         </nav>
       </header>
       <Link
         href="/donatepage"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="fixed top-8 right-4 bg-blue-500 hover:bg-green-400 hover:rounded-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Donate
       </Link>
@@ -212,4 +198,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
