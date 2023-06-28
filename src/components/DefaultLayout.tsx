@@ -6,7 +6,7 @@ const DefaultLayout: React.FC = ({ children }) => {
   return (
     <div
       style={{
-        backgroundImage: `url('/backgrounds/backdrop.jpg')`, // Replace with the path to your background image
+        backgroundImage: `url('/backgrounds/backy.jpg')`, // Replace with the path to your background image
         // Replace with the path to your background video
         backgroundSize: 'cover',
         backgroundPosition: 'center',
