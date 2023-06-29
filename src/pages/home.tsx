@@ -7,11 +7,13 @@ const Home = () => {
       id: 1,
       title: '2023 FEB NEWSLETTER',
       pdf: '/pdf/news/news1.pdf',
+      preview: '/pdf/news/news1.pdf',
     },
     {
       id: 2,
       title: 'News Article',
       pdf: '/pdf/news/news2.pdf',
+      preview: '/pdf/previews/news2-preview.jpg',
     },
     {
       id: 3,
@@ -98,12 +100,24 @@ const Home = () => {
               {news.map((item) => (
                 <div key={item.id} className="bg-white shadow-lg rounded-lg p-6">
                   {item.pdf ? (
-                    <button
-                      className="text-blue-600 hover:underline"
-                      onClick={() => openPdfModal(item.pdf)}
-                    >
-                      {item.title}
-                    </button>
+                    <div>
+                      <div className="mb-2">
+                        {item.preview && (
+                          <iframe
+                            src={item.preview}
+                            alt={item.title}
+                            className="rounded-md w-full cursor-pointer"
+                            onClick={() => openPdfModal(item.pdf)}
+                          />
+                        )}
+                      </div>
+                      <button
+                        className="text-blue-600 hover:underline"
+                        onClick={() => openPdfModal(item.pdf)}
+                      >
+                        {item.title}
+                      </button>
+                    </div>
                   ) : (
                     <a
                       href={item.ref}
@@ -119,7 +133,7 @@ const Home = () => {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="rounded-md w-full"
+                        className="rounded-md w-full cursor-pointer"
                         onClick={() => openImageModal(item.image)}
                       />
                     </div>
@@ -157,7 +171,6 @@ const Home = () => {
               onClick={closeModals}
             >
               <div className="bg-white rounded-lg p-4 w-full max-w-4xl mx-auto">
-                {/* Render the PDF content here */}
                 <embed src={selectedPdf} type="application/pdf" width="100%" height="600px" />
               </div>
             </div>

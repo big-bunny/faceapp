@@ -69,7 +69,7 @@ const AboutPage = () => {
             </header>
           </div>
 
-          <div className="w-full lg:w-1/3 bg-gradient-to-r from-secondary to-accent rounded-3xl backdrop-blur-3xl shadow-md px-8 py-10 md:py-20 lg:px-12 flex flex-col">
+          <div className="w-full lg:w-1/3 bg-white rounded-3xl  shadow-md px-8 py-10 md:py-20 lg:px-12 flex flex-col">
             <h2 className="text-5xl font-extrabold bg-gradient-to-r from-accent to-secondary text-gray-900 inline-block rounded-full px-6 py-2">
               ABOUT SCHIELD CENTER
             </h2>

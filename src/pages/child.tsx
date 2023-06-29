@@ -69,7 +69,7 @@ export class Child extends Component {
           <main className="max-w-4xl mx-auto py-8">
             <h1 className="text-3xl font-bold mb-4">Children in Need of Sponsorship</h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 text-2xl lg:grid-cols-3 gap-4">
               {children.map((child) => (
                 <div key={child.id} className="bg-white rounded shadow p-6">
                   <div className="flex items-center mb-4">
