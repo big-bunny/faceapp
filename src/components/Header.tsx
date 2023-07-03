@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome,
@@ -17,6 +18,7 @@ import Link from 'next/link';
 const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
@@ -121,14 +123,22 @@ const Header: React.FC = () => {
     );
   };
 
+  const redirectToDashboard = () => {
+    router.push('/');
+  };
+
   return (
     <div className="fixed top-0 w-full z-50">
       <header className="backdrop-filter backdrop-blur-3xl rounded-3xl  shadow-md">
         <nav className="container mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-4">
-              <img src="/logo.png" alt="Logo" className="h-8 w-8" />
-              <h1 className="text-3xl font-bold">Schield Centre</h1>
+            <Link href="/" onClick={redirectToDashboard}>
+               
+                  <img src="/logo.png" alt="Logo" className="h-8 w-8" />
+                  <h1 className="text-3xl font-bold cursor-pointer">Schield Centre</h1>
+                
+              </Link>
             </div>
             <div className="md:hidden">
               <button

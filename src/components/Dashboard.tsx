@@ -11,20 +11,20 @@ export class Dashboard extends Component {
           {/* Left section */}
           <div className="flex flex-col mr-8">
             {/* Mission Statement */}
-            <marquee direction="left" scrollamount="3" className="mb-4">
+            <div className="scrolling-text mb-4">
               <h3>Mission Statement</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </marquee>
+            </div>
            
             {/* Centered image */}
             <div className="flex justify-center mb-8">
               <img src="/images/gallery/construction.jpg" alt="Centered Image" className="max-w-full h-auto" />
             </div>
             {/* Vision Statement */}
-            <marquee direction="left" scrollamount="3" className="mb-4">
+            <div className="scrolling-text mb-4">
               <h3>Vision Statement</h3>
               <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              </marquee >
+            </div>
           </div>
 
           {/* Right section */}
@@ -46,8 +46,8 @@ export class Dashboard extends Component {
               <h2 className="text-xl font-bold mb-4">Recent Activities</h2>
               <ul>
                 <li className="mb-2">Trip to Court</li>
-                <li className="mb-2">Science Fair Preparation Meeting</li>
-                <li className="mb-2">Parent-Teacher Meeting Scheduled</li>
+                <li className="mb-2">Sports Day</li>
+               
               </ul>
             </div>
           </div>
