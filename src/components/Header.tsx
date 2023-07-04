@@ -78,6 +78,10 @@ const Header: React.FC = () => {
     </li>
   );
 
+  const toggleRegisterForm = () => {
+    setShowRegisterForm((prevState) => !prevState);
+  };
+
   const renderUserSection = () => {
     if (!session) {
       return (
@@ -87,19 +91,14 @@ const Header: React.FC = () => {
             onClick={() => {
               signIn();
             }}
-            className="text-black hover:text-green-300"
+            className=" bg-green-500 hover:bg-red-400 hover:rounded-full  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outlinetext-black hover:text-green-300"
           >
             <FontAwesomeIcon icon={faUser} className="mr-1" />
             Sign in
           </button>
           <button
-            onClick={() => {
-              // Show the RegisterForm when clicking the "Register" button
-              setShowRegisterForm(true);
-              setIsDropdownOpen(false); // Close the dropdown menu if open
-              setIsMenuOpen(false); // Close the mobile menu if open
-            }}
-            className="text-black hover:text-green-300 ml-4"
+            onClick={toggleRegisterForm}
+            className=" bg-red-500 hover:bg-green-400 hover:rounded-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300 ml-4"
           >
             Register
           </button>
@@ -202,17 +201,12 @@ const Header: React.FC = () => {
                   </ul>
                 )}
               </li>
+              <li className="mt-2">{renderUserSection()}</li>
             </ul>
           )}
         </nav>
       </header>
-      <Link
-        href="/donatepage"
-        className="fixed top-8 right-4 bg-blue-500 hover:bg-green-400 hover:rounded-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Donate
-      </Link>
-      {showRegisterForm && <RegisterForm />} {/* Display the RegisterForm component when showRegisterForm is true */}
+      {showRegisterForm && <RegisterForm toggleForm={toggleRegisterForm} />} {/* Render the RegisterForm component when showRegisterForm is true */}
     </div>
   );
 };
