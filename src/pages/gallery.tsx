@@ -46,55 +46,6 @@ const galleryItems: GalleryItem[] = [
     url: '/images/gallery/community/constryction/preprimaryconstruction2020duringcovidclosure/social-distance.jpg',
     album: 'Covid',
   },
-  {
-    id: 7,
-    type: 'video',
-    url: '/videos/video_thumbnail.jpg',
-    album: 'Video Album',
-    videoUrl: '/videos/video1.mp4',
-  },
-  {
-    id: 8,
-    type: 'youtube',
-    url: 'https://www.youtube.com/watch?v=rXSXbryBbh8',
-    album: 'YouTube Album',
-  },
-  {
-    id: 9,
-    type: 'youtube',
-    url: 'https://www.youtube.com/watch?v=zmTFzMXKHR8',
-    album: 'YouTube Album',
-  },
-  {
-    id: 10,
-    type: 'youtube',
-    url: 'https://www.youtube.com/watch?v=ANfUg7aEbPI',
-    album: 'YouTube Album',
-  },
-  {
-    id: 11,
-    type: 'youtube',
-    url: 'https://www.youtube.com/watch?v=p3tQDKkvbS8',
-    album: 'YouTube Album',
-  },
-  {
-    id: 12,
-    type: 'youtube',
-    url: 'https://www.youtube.com/watch?v=oJyTmc9jdLw',
-    album: 'YouTube Album',
-  },
-  {
-    id: 13,
-    type: 'youtube',
-    url: 'https://www.youtube.com/watch?v=Moyyh05Vr7M',
-    album: 'YouTube Album',
-  },
-  {
-    id: 14,
-    type: 'youtube',
-    url: 'https://www.youtube.com/watch?v=TO35vEnSns4',
-    album: 'YouTube Album',
-  },
   
   {
     id: 15,
@@ -156,6 +107,57 @@ const galleryItems: GalleryItem[] = [
     url: '/images/gallery/community/graduation9.JPG',
     album: 'Graduation',
   },
+  {
+    id: 8,
+    type: 'youtube',
+    url: 'https://www.youtube.com/watch?v=rXSXbryBbh8',
+    album: 'YouTube Album',
+  },
+  {
+    id: 9,
+    type: 'youtube',
+    url: 'https://www.youtube.com/watch?v=zmTFzMXKHR8',
+    album: 'YouTube Album',
+  },
+  {
+    id: 10,
+    type: 'youtube',
+    url: 'https://www.youtube.com/watch?v=ANfUg7aEbPI',
+    album: 'YouTube Album',
+  },
+  {
+    id: 11,
+    type: 'youtube',
+    url: 'https://www.youtube.com/watch?v=p3tQDKkvbS8',
+    album: 'YouTube Album',
+  },
+  {
+    id: 12,
+    type: 'youtube',
+    url: 'https://www.youtube.com/watch?v=oJyTmc9jdLw',
+    album: 'YouTube Album',
+  },
+  {
+    id: 13,
+    type: 'youtube',
+    url: 'https://www.youtube.com/watch?v=Moyyh05Vr7M',
+    album: 'YouTube Album',
+  },
+  {
+    id: 14,
+    type: 'youtube',
+    url: 'https://www.youtube.com/watch?v=TO35vEnSns4',
+    album: 'YouTube Album',
+  },
+  {
+    id: 7,
+    type: 'video',
+    url: '/videos/video_thumbnail.jpg',
+    album: 'Video Album',
+    videoUrl: '/videos/video1.mp4',
+  },
+  
+  
 
   // Add more gallery items as needed
 ];
@@ -261,11 +263,11 @@ const Gallery: React.FC = () => {
                 </div>
               )}
               {selectedMedia.type === 'youtube' && (
-                <div className="relative w-full">
+                <div className="relative h full w-full">
                   <iframe
                     src={`https://www.youtube.com/embed/${getYoutubeVideoId(selectedMedia.url)}`}
                     title="YouTube Video"
-                    className="w-full h-auto"
+                    className="w-full h-full"
                     allowFullScreen
                   ></iframe>
                 </div>

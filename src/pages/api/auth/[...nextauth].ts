@@ -6,11 +6,10 @@ import GoogleProvider from "next-auth/providers/google";
 import TwitterProvider from "next-auth/providers/twitter";
 import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
-import  { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import crypto from 'crypto';
 import { getPrismaClient } from "../db";
- // Assuming db.ts is in the same directory
 
 const prisma = getPrismaClient();
 
@@ -63,15 +62,9 @@ const options: NextAuthOptions = {
               password: password,
               authentication_key: authenticationKey,
               // Add any additional fields for the user
+              id_: 0, // Provide a value for the id_ field
+              username: "SomeUsername", // Provide a value for the username field
             },
-          });
-
-          // Send the welcome email to the new user
-          await transporter.sendMail({
-            from: 'your_email',
-            to: newUser.email,
-            subject: 'Welcome to Schield Centre friends forum',
-            text: 'Thank you for signing up with us today. This is our official email. Feel free to reach out to support through this email!',
           });
 
           // Return the newly created user object

@@ -14,10 +14,12 @@ import {
   faHandsHelping,
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import RegisterForm from './RegisterForm'; // Import the RegisterForm component
 
 const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showRegisterForm, setShowRegisterForm] = useState(false); // New state to control the display of RegisterForm
   const router = useRouter();
 
   const toggleDropdown = () => {
@@ -82,14 +84,24 @@ const Header: React.FC = () => {
         <>
           <span className="mr-2">You are not signed in</span>
           <button
-            onClick={(e) => {
-              e.preventDefault();
+            onClick={() => {
               signIn();
             }}
             className="text-black hover:text-green-300"
           >
             <FontAwesomeIcon icon={faUser} className="mr-1" />
             Sign in
+          </button>
+          <button
+            onClick={() => {
+              // Show the RegisterForm when clicking the "Register" button
+              setShowRegisterForm(true);
+              setIsDropdownOpen(false); // Close the dropdown menu if open
+              setIsMenuOpen(false); // Close the mobile menu if open
+            }}
+            className="text-black hover:text-green-300 ml-4"
+          >
+            Register
           </button>
         </>
       );
@@ -109,8 +121,7 @@ const Header: React.FC = () => {
             </strong>
           </div>
           <button
-            onClick={(e) => {
-              e.preventDefault();
+            onClick={() => {
               signOut();
             }}
             className="text-black hover:text-green-300 ml-4"
@@ -133,11 +144,9 @@ const Header: React.FC = () => {
         <nav className="container mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-4">
-            <Link href="/" onClick={redirectToDashboard}>
-               
-                  <img src="/logo.png" alt="Logo" className="h-8 w-8" />
-                  <h1 className="text-3xl font-bold cursor-pointer">Schield Centre</h1>
-                
+              <Link href="/" onClick={redirectToDashboard}>
+                <img src="/logo.png" alt="Logo" className="h-8 w-8" />
+                <h1 className="text-3xl font-bold cursor-pointer">Schield Centre</h1>
               </Link>
             </div>
             <div className="md:hidden">
@@ -203,6 +212,7 @@ const Header: React.FC = () => {
       >
         Donate
       </Link>
+      {showRegisterForm && <RegisterForm />} {/* Display the RegisterForm component when showRegisterForm is true */}
     </div>
   );
 };

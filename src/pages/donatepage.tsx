@@ -1,8 +1,11 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import DonateButton from '@/components/Donate';
 import React from 'react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const DonationPage: React.FC = () => {
   const router = useRouter();
@@ -13,9 +16,8 @@ const DonationPage: React.FC = () => {
 
   const checkAuthentication = async () => {
     const session = await getSession();
-
     if (!session) {
-      router.push('/login'); // Redirect to login page if user is not authenticated
+      router.replace('/api/auth/signin');
     }
   };
 
