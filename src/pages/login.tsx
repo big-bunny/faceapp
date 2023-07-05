@@ -90,7 +90,7 @@ const LoginPage = () => {
               <div className="mt-4">
                 <p className="text-center">
                   Don&apos;t have an account?{' '}
-                  <Link href="/register" passHref>
+                  <Link href="/register" passHref legacyBehavior>
                     <a className="text-blue-500 hover:underline">Register</a>
                   </Link>
                 </p>
