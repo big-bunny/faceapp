@@ -2,11 +2,13 @@ import { signIn, SessionProvider, useSession, getProviders } from 'next-auth/rea
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import DefaultLayout from '@/components/DefaultLayout';
-import router from 'next/router';
+import { LiteralUnion,  ClientSafeProvider } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const LoginPage = () => {
   const { data: session } = useSession();
-  const [providerData, setProviderData] = useState(null);
+  const [providerData, setProviderData] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -20,9 +22,11 @@ const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  if (session) {
-    router.push('/');
-  }
+  useEffect(() => {
+    if (session) {
+      router.push('/');
+    }
+  }, [session, router]);
 
   const handleSignInWithEmail = () => {
     signIn('credentials', {

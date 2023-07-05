@@ -100,7 +100,7 @@ const Home = () => {
                         {item.preview && (
                           <iframe
                             src={item.preview}
-                            alt={item.title}
+                            
                             className="rounded-md w-full cursor-pointer"
                             onClick={() => openPdfModal(item.pdf)}
                           />
