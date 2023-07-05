@@ -2,12 +2,13 @@ import { signIn, SessionProvider, useSession, getProviders } from 'next-auth/rea
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import DefaultLayout from '@/components/DefaultLayout';
-import { LiteralUnion,  ClientSafeProvider } from 'next-auth/react';
+import { LiteralUnion } from 'next-auth/react';
+import { ClientSafeProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 const LoginPage = () => {
   const { data: session } = useSession();
-  const [providerData, setProviderData] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
+  const [providerData, setProviderData] = useState<Record<LiteralUnion<string, never>, ClientSafeProvider> | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const LoginPage = () => {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-300 to-purple-500">
         <div className="max-w-md px-4 py-8 bg-white shadow-lg rounded-lg">
           <h1 className="text-2xl font-bold text-center mb-4">
-            Dear Shield&apos;s friend, login to continue 👍
+            Dear Shield's friend, login to continue 👍
           </h1>
           <div className="mb-4">
             {providerData &&
@@ -87,8 +88,8 @@ const LoginPage = () => {
               </div>
               <div className="mt-4">
                 <p className="text-center">
-                  Don&apos;t have an account?{' '}
-                  <Link href="/register" legacyBehavior>
+                  Don't have an account?{' '}
+                  <Link href="/register" passHref legacyBehavior>
                     <a className="text-blue-500 hover:underline">Register</a>
                   </Link>
                 </p>
