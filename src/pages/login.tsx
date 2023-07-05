@@ -1,10 +1,10 @@
-import { signIn, SessionProvider, useSession, getProviders } from 'next-auth/react';
+import { signIn, SessionProvider, useSession, getProviders, ClientSafeProvider } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import DefaultLayout from '@/components/DefaultLayout';
-import { LiteralUnion } from 'next-auth/react';
-import { ClientSafeProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
+
+type LiteralUnion<T extends U, U = string> = T | (U & {});
 
 const LoginPage = () => {
   const { data: session } = useSession();
