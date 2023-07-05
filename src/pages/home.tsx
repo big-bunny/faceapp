@@ -56,9 +56,10 @@ const Home = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [zoomLevel, setZoomLevel] = useState(1);
 
-  const openPdfModal = (pdf) => {
+  const openPdfModal = (pdf: string) => { // Explicitly specify the type as "string"
     setSelectedPdf(pdf);
   };
+
 
   const openImageModal = (image) => {
     setSelectedImage(image);
