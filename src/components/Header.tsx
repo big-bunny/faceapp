@@ -88,7 +88,7 @@ const Header = () => {
   );
 
   const renderUserSection = () => {
-    if (!session) {
+    if (!session || !session.user) {
       return (
         <>
           <span className="mr-2">You are not signed in</span>
@@ -114,10 +114,12 @@ const Header = () => {
     return (
       <>
         <div className="flex items-center">
-          <div
-            className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
-            style={{ backgroundImage: `url(${session.user.image})` }}
-          />
+          {session.user.image && (
+            <div
+              className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
+              style={{ backgroundImage: `url(${session.user.image})` }}
+            />
+          )}
           <div>
             <small className="block">Signed in as</small>
             <strong className="block text-black">
