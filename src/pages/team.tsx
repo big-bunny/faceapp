@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DefaultLayout from '@/components/DefaultLayout';
@@ -56,10 +57,12 @@ const Team: React.FC = () => {
                   className="bg-white rounded shadow p-6 cursor-pointer"
                   onClick={() => openModal(staffMember)}
                 >
-                  <img
+                  <Image
                     src={staffMember.image}
                     alt={staffMember.name}
                     className="w-full h-32 object-cover mb-4"
+                    width={500}
+                    height={500}
                   />
                   <h3 className="text-xl font-semibold">{staffMember.name}</h3>
                   <p className="text-gray-700">{staffMember.position}</p>
@@ -74,10 +77,12 @@ const Team: React.FC = () => {
       {selectedStaffMember && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50" onClick={closeModal}>
           <div className="bg-white rounded-lg p-4 w-full max-w-4xl mx-auto">
-            <img
+            <Image
               src={selectedStaffMember.image}
               alt={selectedStaffMember.name}
               className="w-full mb-4"
+              width={800}
+              height={800}
             />
             <h3 className="text-2xl font-semibold mb-2">{selectedStaffMember.name}</h3>
             <p className="text-gray-700">{selectedStaffMember.position}</p>

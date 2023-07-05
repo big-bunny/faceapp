@@ -107,11 +107,11 @@ const Header = () => {
             Sign in
           </button>
           <button
-        onClick={redirectToRegisterPage}
-        className="bg-red-500 hover:bg-green-400 hover:rounded-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300 ml-4"
-      >
-        Register
-      </button>
+            onClick={redirectToRegisterPage}
+            className="bg-red-500 hover:bg-green-400 hover:rounded-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300 ml-4"
+          >
+            Register
+          </button>
         </>
       );
     }

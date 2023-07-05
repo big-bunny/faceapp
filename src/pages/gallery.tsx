@@ -1,5 +1,6 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 
 interface GalleryItem {
   id: number;
@@ -8,6 +9,7 @@ interface GalleryItem {
   album: string;
   videoUrl?: string;
 }
+
 
 const galleryItems: GalleryItem[] = [
   {
@@ -186,7 +188,7 @@ const Gallery: React.FC = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   const getYoutubeVideoId = (url: string): string => {
     const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/)?([a-zA-Z0-9\-_]+)/;
@@ -214,7 +216,7 @@ const Gallery: React.FC = () => {
                         onClick={() => openModal(item)}
                       >
                         {item.type === 'image' && (
-                          <img src={item.url} alt={`Image ${item.id}`} className="w-full h-32 object-cover mb-4" />
+                          <Image src={item.url} alt={`Image ${item.id}`} width={400} height={300} />
                         )}
                         {item.type === 'video' && (
                           <div className="relative w-full">
@@ -246,10 +248,24 @@ const Gallery: React.FC = () => {
         </div>
 
         {selectedMedia && (
-          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50" onClick={closeModal}>
-            <div ref={modalRef} className="max-w-2xl bg-white rounded-lg p-4">
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
+            <div
+              ref={modalRef}
+              className="bg-white rounded shadow-lg max-w-3xl overflow-hidden"
+            >
+              <button
+                className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800"
+                onClick={closeModal}
+              >
+                Close
+              </button>
               {selectedMedia.type === 'image' && (
-                <img src={selectedMedia.url} alt="Full-size Image" className="w-full h-auto" />
+                <Image
+                  src={selectedMedia.url}
+                  alt={`Image ${selectedMedia.id}`}
+                  width={800}
+                  height={600}
+                />
               )}
               {selectedMedia.type === 'video' && (
                 <div className="relative w-full">
@@ -263,21 +279,17 @@ const Gallery: React.FC = () => {
                 </div>
               )}
               {selectedMedia.type === 'youtube' && (
-                <div className="relative h full w-full">
+                <div className="relative w-full">
                   <iframe
-                    src={`https://www.youtube.com/embed/${getYoutubeVideoId(selectedMedia.url)}`}
+                    src={`https://www.youtube.com/embed/${getYoutubeVideoId(
+                      selectedMedia.url
+                    )}`}
                     title="YouTube Video"
-                    className="w-full h-full"
+                    className="w-full h-auto"
                     allowFullScreen
                   ></iframe>
                 </div>
               )}
-              <button
-                className="absolute top-0 right-0 m-4 text-gray-500 hover:text-gray-700"
-                onClick={closeModal}
-              >
-                Close
-              </button>
             </div>
           </div>
         )}
@@ -287,6 +299,4 @@ const Gallery: React.FC = () => {
 };
 
 export default Gallery;
-
-
 

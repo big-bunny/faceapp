@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Link from 'next/link';
 import React, { Component } from 'react';
+import Image from 'next/image';
 
 export class ProgramSponsorship extends Component {
   render() {
@@ -15,30 +16,6 @@ export class ProgramSponsorship extends Component {
       },
       {
         id: 2,
-        title: 'Healthcare Initiatives',
-        description: 'Contribute to our healthcare initiatives and help improve the well-being of the community.',
-        image: '/images/program/field-trip.jpg',
-      },
-      {
-        id: 3,
-        title: 'Healthcare Initiatives',
-        description: 'Contribute to our healthcare initiatives and help improve the well-being of the community.',
-        image: '/images/program/field-trip.jpg',
-      },
-      {
-        id: 4,
-        title: 'Healthcare Initiatives',
-        description: 'Contribute to our healthcare initiatives and help improve the well-being of the community.',
-        image: '/images/program/field-trip.jpg',
-      },
-      {
-        id: 5,
-        title: 'Healthcare Initiatives',
-        description: 'Contribute to our healthcare initiatives and help improve the well-being of the community.',
-        image: '/images/program/field-trip.jpg',
-      },
-      {
-        id: 6,
         title: 'Healthcare Initiatives',
         description: 'Contribute to our healthcare initiatives and help improve the well-being of the community.',
         image: '/images/program/field-trip.jpg',
@@ -57,10 +34,12 @@ export class ProgramSponsorship extends Component {
               {programs.map((program) => (
                 <div key={program.id} className="bg-white rounded shadow p-6">
                   <div className="flex items-center mb-4">
-                    <img
+                    <Image
                       src={program.image}
                       alt={`Program ${program.id}`}
                       className="w-20 h-20 rounded-full object-cover"
+                      width={80}
+                      height={80}
                     />
                     <div className="ml-4">
                       <h2 className="text-lg font-bold">{program.title}</h2>

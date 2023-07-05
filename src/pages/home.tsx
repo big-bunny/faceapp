@@ -1,5 +1,6 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 const Home = () => {
   const news = [
@@ -9,12 +10,7 @@ const Home = () => {
       pdf: '/pdf/news/news1.pdf',
       preview: '/pdf/news/news1.pdf',
     },
-    {
-      id: 2,
-      title: 'News Article',
-      pdf: '/pdf/news/news2.pdf',
-      preview: '/pdf/previews/news2-preview.jpg',
-    },
+  
     {
       id: 3,
       title: 'News Article 2020',
@@ -130,11 +126,13 @@ const Home = () => {
                   )}
                   {item.image && (
                     <div className="mt-4">
-                      <img
+                      <Image
                         src={item.image}
                         alt={item.title}
                         className="rounded-md w-full cursor-pointer"
                         onClick={() => openImageModal(item.image)}
+                        width={400}
+                        height={300}
                       />
                     </div>
                   )}
@@ -150,10 +148,12 @@ const Home = () => {
                 <div key={item.id} className="bg-white shadow-lg rounded-lg p-6">
                   <p>{item.quote}</p>
                   <div className="flex items-center mt-4">
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.author}
                       className="rounded-full w-12 h-12 object-cover mr-4"
+                      width={48}
+                      height={48}
                     />
                     <div>
                       <p className="font-bold">{item.author}</p>
@@ -184,7 +184,13 @@ const Home = () => {
             >
               <div className="bg-white rounded-lg p-4 w-full max-w-4xl mx-auto">
                 {/* Render the image content here */}
-                <img src={selectedImage} alt="Selected Image" className="w-full" />
+                <Image
+                  src={selectedImage}
+                  alt="Selected Image"
+                  className="w-full"
+                  width={800}
+                  height={600}
+                />
               </div>
             </div>
           )}

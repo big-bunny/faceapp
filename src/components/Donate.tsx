@@ -35,7 +35,7 @@ const DonateButton: React.FC = () => {
       // Set the button rendered state to true
       setIsButtonRendered(true);
     }
-  }, []);
+  }, [isButtonRendered]);
 
   return (
     <div id="donate-button-container">
@@ -46,4 +46,3 @@ const DonateButton: React.FC = () => {
 };
 
 export default DonateButton;
-

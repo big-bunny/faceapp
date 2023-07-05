@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Image from 'next/image';
 
 export class Dashboard extends Component {
   render() {
@@ -12,26 +13,24 @@ export class Dashboard extends Component {
           <div className="flex flex-col mr-8">
             {/* Mission Statement */}
             <div className="scrolling-text mb-4">
-              <h3 className="text-2xl text-red-500  ">Mission Statement</h3>
-              <p className="text-xl text-green-500 ">Our mission is to provide access to quality education to children in Kajiado, Kenya, with the aim of empowering them to break the cycle of poverty and improve their lives and those of their families. We strive to create a learning environment that is supportive, inclusive, and empowering, valuing diversity and embracing the unique cultural heritage of our community.</p>
+              <h3 className="text-2xl text-red-500">Mission Statement</h3>
+              <p className="text-xl text-green-500">Our mission is to provide access to quality education to children in Kajiado, Kenya, with the aim of empowering them to break the cycle of poverty and improve their lives and those of their families. We strive to create a learning environment that is supportive, inclusive, and empowering, valuing diversity and embracing the unique cultural heritage of our community.</p>
             </div>
-           
+
             {/* Centered image */}
             <div className="flex justify-center mb-8">
-              <img src="/images/gallery/construction.jpg" alt="Centered Image" className="max-w-full h-auto" />
+              <Image src="/images/gallery/construction.jpg" alt="Centered Image" width={600} height={400} />
             </div>
+
             {/* Vision Statement */}
             <div className="scrolling-text mb-4">
-              <h3 className="text-2xl text-red-500  ">Vision Statement</h3>
-              <p className="text-xl text-green-500 ">Our vision is a world where every child has access to quality education and the opportunity to reach their full potential. We believe that education is a fundamental human right and that it is essential for creating a more just and equitable society. At our center, we believe in fostering a culture of curiosity, creativity, and critical thinking, while also imparting life skills and values such as hard work, honesty, and respect for diversity. Our vision is to inspire and empower the next generation of global citizens who will make a positive impact on the world.</p>
+              <h3 className="text-2xl text-red-500">Vision Statement</h3>
+              <p className="text-xl text-green-500">Our vision is a world where every child has access to quality education and the opportunity to reach their full potential. We believe that education is a fundamental human right and that it is essential for creating a more just and equitable society. At our center, we believe in fostering a culture of curiosity, creativity, and critical thinking, while also imparting life skills and values such as hard work, honesty, and respect for diversity. Our vision is to inspire and empower the next generation of global citizens who will make a positive impact on the world.</p>
             </div>
           </div>
 
           {/* Right section */}
-          
           <div className="flex-grow">
-            {/* Centered image */}
-            
             {/* Display important information */}
             <div className="bg-white rounded-lg p-4 mb-8">
               <h2 className="text-xl font-bold mb-4">Important Information</h2>
@@ -47,7 +46,6 @@ export class Dashboard extends Component {
               <ul>
                 <li className="mb-2">Trip to Court</li>
                 <li className="mb-2">Sports Day</li>
-               
               </ul>
             </div>
           </div>

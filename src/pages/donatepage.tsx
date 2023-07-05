@@ -1,6 +1,6 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import DonateButton from '@/components/Donate';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -10,7 +10,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 const DonationPage: React.FC = () => {
   const router = useRouter();
 
-  React.useEffect(() => {
+  useEffect(() => {
     checkAuthentication();
   }, []);
 
@@ -35,7 +35,7 @@ const DonationPage: React.FC = () => {
                 id="name"
                 type="text"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Enter name of student or program your are donating to"
+                placeholder="Enter name of student or program you are donating to"
               />
             </div>
             <div className="mb-4">
@@ -60,4 +60,3 @@ const DonationPage: React.FC = () => {
 };
 
 export default DonationPage;
-

@@ -103,5 +103,7 @@ const options: NextAuthOptions = {
   debug: false,
 };
 
-export default (req: NextApiRequest, res: NextApiResponse) =>
+const nextAuthHandler = (req: NextApiRequest, res: NextApiResponse) =>
   NextAuth(req, res, options);
+
+export default nextAuthHandler;
