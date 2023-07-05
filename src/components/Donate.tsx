@@ -19,12 +19,9 @@ const DonateButton: React.FC = () => {
       script.async = true;
 
       script.onload = () => {
-        if (
-          (window as WindowWithPayPal).PayPal &&
-          (window as WindowWithPayPal).PayPal.Donation &&
-          (window as WindowWithPayPal).PayPal.Donation.Button
-        ) {
-          (window as WindowWithPayPal).PayPal.Donation.Button({
+        const PayPal = (window as WindowWithPayPal).PayPal?.Donation?.Button;
+        if (PayPal) {
+          PayPal({
             env: 'production',
             hosted_button_id: 'WMBKQ9WVGWCXL',
             image: {
@@ -32,7 +29,7 @@ const DonateButton: React.FC = () => {
               alt: 'Donate with PayPal button',
               title: 'PayPal - The safer, easier way to pay online!',
             },
-          }).render('#donate-button');
+          })?.render('#donate-button');
         }
       };
 
