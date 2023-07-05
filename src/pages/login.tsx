@@ -4,7 +4,7 @@ import Link from 'next/link';
 import DefaultLayout from '@/components/DefaultLayout';
 import { useRouter } from 'next/router';
 
-type LiteralUnion<T extends U, U = string> = T | (U & {});
+type LiteralUnion<T extends U, U> = T | U;
 
 const LoginPage = () => {
   const { data: session } = useSession();
@@ -89,7 +89,7 @@ const LoginPage = () => {
               <div className="mt-4">
                 <p className="text-center">
                   Don&apos;t have an account?{' '}
-                  <Link href="/register" passHref>
+                  <Link href="/register" passHref legacyBehavior>
                     <a className="text-blue-500 hover:underline">Register</a>
                   </Link>
                 </p>
