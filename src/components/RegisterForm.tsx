@@ -11,7 +11,7 @@ const RegisterForm = () => {
 
     try {
       if (password !== passwordConfirmation) {
-        console.log('Password and password confirmation do not match');
+        window.alert('Password and password confirmation do not match');
         return;
       }
 
@@ -24,16 +24,16 @@ const RegisterForm = () => {
       });
 
       if (response.ok) {
-        console.log('Registration successful!');
+        window.alert('Welcome to Schield, dear friend! You are now registered.');
         // Redirect or display success message
       } else if (response.status === 409) {
         const data = await response.json();
-        console.log('Error during registration:', data.error);
+        window.alert('Error during registration: ' + data.error);
       } else {
-        console.log('Error during registration');
+        window.alert('Error during registration');
       }
     } catch (error) {
-      console.log('Error during registration:', error);
+      window.alert('Error during registration: ' + error);
     }
   };
 
@@ -54,7 +54,7 @@ const RegisterForm = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          className="appearance-none block w-full bg-blue-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         />
       </div>
       <div className="mb-4">
@@ -63,7 +63,7 @@ const RegisterForm = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          className="appearance-none block w-full bg-green-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         />
       </div>
       <div className="mb-6">
@@ -72,7 +72,7 @@ const RegisterForm = () => {
           placeholder="Confirm Password"
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          className="appearance-none block w-full bg-red-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         />
       </div>
       <div className="flex items-center justify-center">

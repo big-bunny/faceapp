@@ -88,6 +88,7 @@ const options: NextAuthOptions = {
   },
   pages: {
     // Custom pages...
+    signIn: '/login',
   },
   callbacks: {
     async redirect({ url, baseUrl }) {
