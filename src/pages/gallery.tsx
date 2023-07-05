@@ -1,3 +1,4 @@
+
 import DefaultLayout from '@/components/DefaultLayout';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
@@ -9,6 +10,7 @@ interface GalleryItem {
   album: string;
   videoUrl?: string;
 }
+
 
 const galleryItems: GalleryItem[] = [
   {
@@ -161,7 +163,9 @@ const galleryItems: GalleryItem[] = [
   
 
   // Add more gallery items as needed
-];const Gallery: React.FC = () => {
+];
+
+const Gallery: React.FC = () => {
   const [selectedMedia, setSelectedMedia] = useState<GalleryItem | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -219,7 +223,7 @@ const galleryItems: GalleryItem[] = [
                         {item.type === 'video' && (
                           <div className="relative w-full">
                             <video src={item.videoUrl} controls className="w-full h-auto">
-                              Sorry, your browser doesn't support embedded videos.
+                              Sorry, your browser doesn&apos;t support embedded videos.
                             </video>
                           </div>
                         )}
@@ -274,7 +278,7 @@ const galleryItems: GalleryItem[] = [
               {selectedMedia.type === 'video' && (
                 <div className="relative w-full">
                   <video src={selectedMedia.videoUrl} controls className="w-full h-auto">
-                    Sorry, your browser doesn't support embedded videos.
+                    Sorry, your browser doesn&apos;t support embedded videos.
                   </video>
                 </div>
               )}
