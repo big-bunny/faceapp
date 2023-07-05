@@ -169,7 +169,8 @@ const Gallery: React.FC = () => {
   const [selectedMedia, setSelectedMedia] = useState<GalleryItem | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const albums = [...new Set(galleryItems.map((item) => item.album))];
+  const albums = Array.from(new Set(galleryItems.map((item) => item.album)));
+
 
   const openModal = (item: GalleryItem) => {
     setSelectedMedia(item);
