@@ -29,7 +29,7 @@ const DonationPage: React.FC = () => {
           <form>
             <div className="mb-4">
               <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
-                Name
+                <FontAwesomeIcon icon={faUser} className="mr-2" /> Name
               </label>
               <input
                 id="name"
@@ -40,7 +40,7 @@ const DonationPage: React.FC = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
-                Email
+                <FontAwesomeIcon icon={faUser} className="mr-2" /> Email
               </label>
               <input
                 id="email"

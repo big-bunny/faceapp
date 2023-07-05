@@ -9,6 +9,7 @@ interface GalleryItem {
   album: string;
   videoUrl?: string;
 }
+
 const galleryItems: GalleryItem[] = [
   {
     id: 1,
@@ -160,8 +161,7 @@ const galleryItems: GalleryItem[] = [
   
 
   // Add more gallery items as needed
-];
-const Gallery: React.FC = () => {
+];const Gallery: React.FC = () => {
   const [selectedMedia, setSelectedMedia] = useState<GalleryItem | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
