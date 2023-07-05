@@ -14,13 +14,11 @@ import {
   faHandsHelping,
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import RegisterForm from './RegisterForm';
 import Image from 'next/image';
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [isDonateButtonMoving, setIsDonateButtonMoving] = useState(false);
   const router = useRouter();
 
@@ -89,10 +87,6 @@ const Header = () => {
     </li>
   );
 
-  const toggleRegisterForm = () => {
-    setShowRegisterForm((prevState) => !prevState);
-  };
-
   const renderUserSection = () => {
     if (!session) {
       return (
@@ -122,12 +116,12 @@ const Header = () => {
         <div className="flex items-center">
           <div
             className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
-            style={{ backgroundImage: `url(${session?.user?.image})` }}
+            style={{ backgroundImage: `url(${session.user.image})` }}
           />
           <div>
             <small className="block">Signed in as</small>
             <strong className="block text-black">
-              {session?.user?.email || session?.user?.name}
+              {session.user.email || session.user.name}
             </strong>
           </div>
           <button
@@ -153,7 +147,7 @@ const Header = () => {
   };
 
   const redirectToRegisterPage = () => {
-    router.push('/register');
+    router.push('/register'); // Replace '/register' with the actual URL of your register page
   };
 
   const handleDonateButtonClick = () => {
@@ -205,35 +199,11 @@ const Header = () => {
                 {renderMenuLinks()}
                 {renderDropdown()}
               </ul>
-            </div>
-            <div className="hidden md:flex md:items-center md:space-x-4">
-              {!loading && renderUserSection()}
+              <div className="flex items-center space-x-4">{renderUserSection()}</div>
             </div>
           </div>
         </nav>
       </header>
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <ul className="bg-white mt-2 py-2 px-4 rounded-md shadow-lg">
-            {renderMenuLinks()}
-            {renderDropdown()}
-          </ul>
-        </div>
-      )}
-      {showRegisterForm && (
-        <RegisterForm onClose={toggleRegisterForm} />
-      )}
-      {!loading && (
-        <div className={`fixed bottom-8 right-8 transition duration-500 ${isDonateButtonMoving ? 'animate-bounce' : ''}`}>
-          <button
-            onClick={handleDonateButtonClick}
-            className="flex items-center bg-green-500 hover:bg-red-400 hover:rounded-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300"
-          >
-            <FontAwesomeIcon icon={faDonate} className="mr-2" />
-            Donate
-          </button>
-        </div>
-      )}
     </div>
   );
 };
