@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import RegisterForm from './RegisterForm';
+import Image from 'next/image';
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -168,9 +169,11 @@ const Header = () => {
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-2">
               <Link href="/" onClick={redirectToDashboard}>
-                <img src="/logo.png" alt="Logo" className="h-8 w-8 cursor-pointer" />
+                <div className="h-8 w-8 cursor-pointer">
+                  <Image src="/logo.png" alt="Logo" width={32} height={32} />
+                </div>
                 <span>
-                  <h1 className=" flex text-3xl font-bold cursor-pointer">Schield Centre</h1>
+                  <h1 className="flex text-3xl font-bold cursor-pointer">Schield Centre</h1>
                 </span>
               </Link>
             </div>
@@ -196,54 +199,58 @@ const Header = () => {
                 </svg>
               </button>
             </div>
-            <ul className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex md:space-x-4">
+              <ul className="flex space-x-4">
+                {renderMenuLinks()}
+                {renderDropdown()}
+              </ul>
+              <div className="flex items-center space-x-4">
+                {!loading && renderUserSection()}
+              </div>
+              <div className="flex items-center">
+                <button
+                  onClick={handleDonateButtonClick}
+                  className={`bg-green-500 hover:bg-green-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300 ${
+                    isDonateButtonMoving ? 'animate-bounce' : ''
+                  }`}
+                >
+                  Donate
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <ul className="bg-white text-gray-900 text-center mt-2 py-4">
               {renderMenuLinks()}
               {renderDropdown()}
-              <li>{renderUserSection()}</li>
+              <li className="mt-4">
+                <div className="flex justify-center">
+                  {!loading && renderUserSection()}
+                </div>
+              </li>
+              <li className="mt-4">
+                <div className="flex justify-center">
+                  <button
+                    onClick={redirectToDonatePage}
+                    className={`bg-green-500 hover:bg-green-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300 ${
+                      isDonateButtonMoving ? 'animate-bounce' : ''
+                    }`}
+                  >
+                    Donate
+                  </button>
+                </div>
+              </li>
             </ul>
           </div>
-          {isMenuOpen && (
-            <ul className="md:hidden backdrop-blur-4xl text-black px-4 py-2">
-              {renderMenuLinks()}
-              <li className="mt-2">
-                <button
-                  onClick={toggleDropdown}
-                  className="block font-bold text-2xl py-2 flex items-center space-x-1"
-                >
-                  <FontAwesomeIcon icon={faDonate} className="mr-2" />
-                  <span>Sponsor</span>
-                </button>
-                {isDropdownOpen && (
-                  <ul className="ml-4 bg-white text-gray-900 rounded-md shadow-lg py-2">
-                    <li>
-                      <Link href="/child" className="block py-2 hover:text-blue-500">
-                        <FontAwesomeIcon icon={faChild} className="mr-2" />
-                        Child
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/program" className="block py-2 hover:text-blue-500">
-                        <FontAwesomeIcon icon={faHandsHelping} className="mr-2" />
-                        Program
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </li>
-              <li className="mt-2">{renderUserSection()}</li>
-            </ul>
-          )}
-        </nav>
+        )}
       </header>
-      {showRegisterForm && <RegisterForm toggleForm={toggleRegisterForm} />}
-      <button
-        onClick={redirectToDonatePage}
-        className={`bg-red-500 hover:bg-green-400 hover:rounded-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300 ml-4 ${
-          isDonateButtonMoving ? 'animate-marquee' : ''
-        }`}
-      >
-        Donate
-      </button>
+      {showRegisterForm && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <RegisterForm onClose={toggleRegisterForm} />
+        </div>
+      )}
     </div>
   );
 };

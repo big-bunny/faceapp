@@ -9,8 +9,6 @@ interface GalleryItem {
   album: string;
   videoUrl?: string;
 }
-
-
 const galleryItems: GalleryItem[] = [
   {
     id: 1,
@@ -177,18 +175,18 @@ const Gallery: React.FC = () => {
     setSelectedMedia(null);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-      closeModal();
-    }
-  };
-
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        closeModal();
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [handleClickOutside]);
+  }, []);
 
   const getYoutubeVideoId = (url: string): string => {
     const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/)?([a-zA-Z0-9\-_]+)/;
@@ -199,7 +197,7 @@ const Gallery: React.FC = () => {
   return (
     <>
       <DefaultLayout>
-        <div className="min-h-screen ">
+        <div className="min-h-screen">
           <main className="max-w-4xl mx-auto py-8">
             <h1 className="text-3xl font-bold mb-4">Gallery</h1>
 
@@ -220,11 +218,7 @@ const Gallery: React.FC = () => {
                         )}
                         {item.type === 'video' && (
                           <div className="relative w-full">
-                            <video
-                              src={item.videoUrl}
-                              controls
-                              className="w-full h-auto"
-                            >
+                            <video src={item.videoUrl} controls className="w-full h-auto">
                               Sorry, your browser doesn't support embedded videos.
                             </video>
                           </div>
@@ -249,15 +243,25 @@ const Gallery: React.FC = () => {
 
         {selectedMedia && (
           <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
-            <div
-              ref={modalRef}
-              className="bg-white rounded shadow-lg max-w-3xl overflow-hidden"
-            >
+            <div ref={modalRef} className="relative bg-white rounded shadow-lg">
               <button
-                className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800"
+                className="absolute top-0 right-0 m-4 text-gray-500 hover:text-gray-800"
                 onClick={closeModal}
               >
-                Close
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
               </button>
               {selectedMedia.type === 'image' && (
                 <Image
@@ -269,11 +273,7 @@ const Gallery: React.FC = () => {
               )}
               {selectedMedia.type === 'video' && (
                 <div className="relative w-full">
-                  <video
-                    src={selectedMedia.videoUrl}
-                    controls
-                    className="w-full h-auto"
-                  >
+                  <video src={selectedMedia.videoUrl} controls className="w-full h-auto">
                     Sorry, your browser doesn't support embedded videos.
                   </video>
                 </div>
@@ -281,9 +281,7 @@ const Gallery: React.FC = () => {
               {selectedMedia.type === 'youtube' && (
                 <div className="relative w-full">
                   <iframe
-                    src={`https://www.youtube.com/embed/${getYoutubeVideoId(
-                      selectedMedia.url
-                    )}`}
+                    src={`https://www.youtube.com/embed/${getYoutubeVideoId(selectedMedia.url)}`}
                     title="YouTube Video"
                     className="w-full h-auto"
                     allowFullScreen
@@ -299,4 +297,3 @@ const Gallery: React.FC = () => {
 };
 
 export default Gallery;
-
