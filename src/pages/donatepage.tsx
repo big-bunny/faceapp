@@ -11,15 +11,15 @@ const DonationPage: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    checkAuthentication();
-  }, []);
+    const checkAuthentication = async () => {
+      const session = await getSession();
+      if (!session) {
+        router.replace('/api/auth/signin');
+      }
+    };
 
-  const checkAuthentication = async () => {
-    const session = await getSession();
-    if (!session) {
-      router.replace('/api/auth/signin');
-    }
-  };
+    checkAuthentication();
+  }, [router]);
 
   return (
     <DefaultLayout>
