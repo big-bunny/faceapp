@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-const DefaultLayout: React.FC = ({ children }) => {
+interface DefaultLayoutProps {
+  children: ReactNode;
+}
+
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
     <div
       className="min-h-screen bg-cover bg-center"
@@ -18,4 +22,3 @@ const DefaultLayout: React.FC = ({ children }) => {
 };
 
 export default DefaultLayout;
-
