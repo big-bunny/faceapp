@@ -4,7 +4,7 @@ export class Dashboard extends Component {
   render() {
     return (
       <div className="min-h-screen p-8">
-        <h1 className="text-3xl font-bold mb-8">Welcome to Schield Centre Dashboard</h1>
+        <h1 className="text-5xl font-bold mb-8">Welcome to Schield Centre Dashboard</h1>
 
         {/* Use flexbox to align elements */}
         <div className="flex">
@@ -12,8 +12,8 @@ export class Dashboard extends Component {
           <div className="flex flex-col mr-8">
             {/* Mission Statement */}
             <div className="scrolling-text mb-4">
-              <h3>Mission Statement</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h3 className="text-2xl text-red-500  ">Mission Statement</h3>
+              <p className="text-xl text-green-500 ">Our mission is to provide access to quality education to children in Kajiado, Kenya, with the aim of empowering them to break the cycle of poverty and improve their lives and those of their families. We strive to create a learning environment that is supportive, inclusive, and empowering, valuing diversity and embracing the unique cultural heritage of our community.</p>
             </div>
            
             {/* Centered image */}
@@ -22,8 +22,8 @@ export class Dashboard extends Component {
             </div>
             {/* Vision Statement */}
             <div className="scrolling-text mb-4">
-              <h3>Vision Statement</h3>
-              <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <h3 className="text-2xl text-red-500  ">Vision Statement</h3>
+              <p className="text-xl text-green-500 ">Our vision is a world where every child has access to quality education and the opportunity to reach their full potential. We believe that education is a fundamental human right and that it is essential for creating a more just and equitable society. At our center, we believe in fostering a culture of curiosity, creativity, and critical thinking, while also imparting life skills and values such as hard work, honesty, and respect for diversity. Our vision is to inspire and empower the next generation of global citizens who will make a positive impact on the world.</p>
             </div>
           </div>
 

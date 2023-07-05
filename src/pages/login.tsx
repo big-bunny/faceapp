@@ -37,7 +37,7 @@ const LoginPage = () => {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-300 to-purple-500">
         <div className="max-w-md px-4 py-8 bg-white shadow-lg rounded-lg">
           <h1 className="text-2xl font-bold text-center mb-4">
-            Dear Shield's friend, login to continue 👍
+            Dear Shield&apos;s friend, login to continue 👍
           </h1>
           <div className="mb-4">
             {providerData &&
@@ -83,7 +83,7 @@ const LoginPage = () => {
               </div>
               <div className="mt-4">
                 <p className="text-center">
-                  Don't have an account?{' '}
+                  Don&apos;t have an account?{' '}
                   <Link href="/register" legacyBehavior>
                     <a className="text-blue-500 hover:underline">Register</a>
                   </Link>

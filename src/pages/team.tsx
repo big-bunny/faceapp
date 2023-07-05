@@ -48,7 +48,7 @@ const Team: React.FC = () => {
       <DefaultLayout>
         <div className="min-h-screen">
           <main className="max-w-4xl mx-auto py-8">
-            <h1 className="text-3xl font-bold mb-4">Our Team</h1>
+            <h1 className="text-5xl text-center font-bold mb-4">Our Team</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {staffMembers.map((staffMember) => (
                 <div
