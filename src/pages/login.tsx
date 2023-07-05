@@ -8,7 +8,8 @@ type LiteralUnion<T extends U, U> = T | (U & {});
 
 const LoginPage = () => {
   const { data: session } = useSession();
-  const [providerData, setProviderData] = useState<Record<LiteralUnion<string, never>, ClientSafeProvider> | null>(null);
+  const [providerData, setProviderData] = useState<Record<string, ClientSafeProvider> | null>(null);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -89,7 +90,7 @@ const LoginPage = () => {
               <div className="mt-4">
                 <p className="text-center">
                   Don&apos;t have an account?{' '}
-                  <Link href="/register" passHref legacyBehavior>
+                  <Link href="/register" passHref>
                     <a className="text-blue-500 hover:underline">Register</a>
                   </Link>
                 </p>
