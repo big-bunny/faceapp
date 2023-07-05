@@ -122,12 +122,12 @@ const Header = () => {
         <div className="flex items-center">
           <div
             className="w-8 h-8 rounded-full bg-cover bg-center mr-2"
-            style={{ backgroundImage: `url(${session.user.image})` }}
+            style={{ backgroundImage: `url(${session?.user?.image})` }}
           />
           <div>
             <small className="block">Signed in as</small>
             <strong className="block text-black">
-              {session.user.email || session.user.name}
+              {session?.user?.email || session?.user?.name}
             </strong>
           </div>
           <button
@@ -151,8 +151,9 @@ const Header = () => {
   const redirectToDonatePage = () => {
     router.push('/donatepage');
   };
+
   const redirectToRegisterPage = () => {
-    router.push('/register'); // Replace '/register' with the actual URL of your register page
+    router.push('/register');
   };
 
   const handleDonateButtonClick = () => {
@@ -204,51 +205,33 @@ const Header = () => {
                 {renderMenuLinks()}
                 {renderDropdown()}
               </ul>
-              <div className="flex items-center space-x-4">
-                {!loading && renderUserSection()}
-              </div>
-              <div className="flex items-center">
-                <button
-                  onClick={redirectToDonatePage}
-                  className={`bg-green-500 hover:bg-green-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300 ${
-                    isDonateButtonMoving ? 'animate-bounce' : ''
-                  }`}
-                >
-                  Donate
-                </button>
-              </div>
+            </div>
+            <div className="hidden md:flex md:items-center md:space-x-4">
+              {!loading && renderUserSection()}
             </div>
           </div>
         </nav>
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <ul className="bg-white text-gray-900 text-center mt-2 py-4">
-              {renderMenuLinks()}
-              {renderDropdown()}
-              <li className="mt-4">
-                <div className="flex justify-center">
-                  {!loading && renderUserSection()}
-                </div>
-              </li>
-              <li className="mt-4">
-                <div className="flex justify-center">
-                  <button
-                    onClick={redirectToDonatePage}
-                    className={`bg-green-500 hover:bg-green-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300 ${
-                      isDonateButtonMoving ? 'animate-bounce' : ''
-                    }`}
-                  >
-                    Donate
-                  </button>
-                </div>
-              </li>
-            </ul>
-          </div>
-        )}
       </header>
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <ul className="bg-white mt-2 py-2 px-4 rounded-md shadow-lg">
+            {renderMenuLinks()}
+            {renderDropdown()}
+          </ul>
+        </div>
+      )}
       {showRegisterForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <RegisterForm onClose={toggleRegisterForm} />
+        <RegisterForm onClose={toggleRegisterForm} />
+      )}
+      {!loading && (
+        <div className={`fixed bottom-8 right-8 transition duration-500 ${isDonateButtonMoving ? 'animate-bounce' : ''}`}>
+          <button
+            onClick={handleDonateButtonClick}
+            className="flex items-center bg-green-500 hover:bg-red-400 hover:rounded-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300"
+          >
+            <FontAwesomeIcon icon={faDonate} className="mr-2" />
+            Donate
+          </button>
         </div>
       )}
     </div>
