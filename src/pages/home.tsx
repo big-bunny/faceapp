@@ -1,6 +1,6 @@
-import DefaultLayout from '@/components/DefaultLayout';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import DefaultLayout from '@/components/DefaultLayout';
 
 const Home = () => {
   const news = [
@@ -10,7 +10,6 @@ const Home = () => {
       pdf: '/pdf/news/news1.pdf',
       preview: '/pdf/news/news1.pdf',
     },
-  
     {
       id: 3,
       title: 'News Article 2020',
@@ -52,16 +51,15 @@ const Home = () => {
     },
   ];
 
-  const [selectedPdf, setSelectedPdf] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
 
-  const openPdfModal = (pdf: string) => { // Explicitly specify the type as "string"
+  const openPdfModal = (pdf: string) => {
     setSelectedPdf(pdf);
   };
 
-
-  const openImageModal = (image) => {
+  const openImageModal = (image: string) => {
     setSelectedImage(image);
   };
 
