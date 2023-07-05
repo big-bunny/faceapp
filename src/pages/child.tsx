@@ -13,8 +13,12 @@ interface ChildData {
   description: string;
 }
 
-export class Child extends Component {
-  state = {
+interface ChildState {
+  showFullDescription: boolean;
+}
+
+export class Child extends Component<{}, ChildState> {
+  state: ChildState = {
     showFullDescription: false,
   };
 
@@ -24,8 +28,8 @@ export class Child extends Component {
     }));
   };
 
- render() {
-    const children = [
+  render() {
+    const children: ChildData[] = [
       {
         id: 1,
         name: 'John Doe',
@@ -35,27 +39,6 @@ export class Child extends Component {
       },
       {
         id: 2,
-        name: 'Jane Smith',
-        age: 10,
-        image: '/images/students/schield2.jpg',
-        description: 'Jane is a passionate soccer player. She hopes to join a local soccer team and improve her skills with proper training.',
-      },
-      {
-        id: 3,
-        name: 'Jane Smith',
-        age: 10,
-        image: '/images/students/schield2.jpg',
-        description: 'Jane is a passionate soccer player. She hopes to join a local soccer team and improve her skills with proper training.',
-      },
-      {
-        id: 4,
-        name: 'Jane Smith',
-        age: 10,
-        image: '/images/students/schield2.jpg',
-        description: 'Jane is a passionate soccer player. She hopes to join a local soccer team and improve her skills with proper training.',
-      },
-      {
-        id: 5,
         name: 'Jane Smith',
         age: 10,
         image: '/images/students/schield2.jpg',
