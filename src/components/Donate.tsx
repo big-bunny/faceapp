@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 interface WindowWithPayPal extends Window {
-  PayPal: {
-    Donation: {
-      Button: any; // Adjust the type if you have specific typings for the PayPal Donation Button
+  PayPal?: {
+    Donation?: {
+      Button?: any; // Adjust the type if you have specific typings for the PayPal Donation Button
     };
   };
 }
@@ -23,7 +23,11 @@ const DonateButton: React.FC = () => {
 
       // Script onload event handler
       script.onload = () => {
-        if ((window as WindowWithPayPal).PayPal?.Donation?.Button) {
+        if (
+          (window as WindowWithPayPal).PayPal &&
+          (window as WindowWithPayPal).PayPal.Donation &&
+          (window as WindowWithPayPal).PayPal.Donation.Button
+        ) {
           // Render the PayPal donation button
           (window as WindowWithPayPal).PayPal.Donation.Button({
             env: 'production',
