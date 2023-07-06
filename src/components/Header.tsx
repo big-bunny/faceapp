@@ -45,7 +45,7 @@ const Header = () => {
       {menuLinks.map((link) => (
         <li key={link.href}>
           <Link href={link.href} legacyBehavior>
-            <a className="text-black font-bold text-2xl hover:text-green-300 ml-4 flex items-center space-x-1">
+            <a className="text-black font-bold text-lg hover:text-green-300 ml-4 flex items-center space-x-1">
               <FontAwesomeIcon icon={link.icon} className="mr-2" />
               <span>{link.label}</span>
             </a>
@@ -59,7 +59,7 @@ const Header = () => {
     <li className="relative">
       <button
         onClick={toggleDropdown}
-        className="text-black font-bold text-2xl hover:text-green-300 mt-2 flex items-center space-x-1"
+        className="text-black font-bold text-lg hover:text-green-300 mt-2 flex items-center space-x-1"
       >
         <FontAwesomeIcon icon={faDonate} className="mr-1" />
         <span>Sponsor</span>
@@ -94,9 +94,9 @@ const Header = () => {
           <span className="mr-2">You are not signed in</span>
           <button
             onClick={() => {
-              signIn();
+             signIn();
             }}
-            className="bg-green-500 hover:bg-red-400 hover:rounded-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outlinetext-black hover:text-green-300"
+            className="bg-green-500 hover:bg-red-400 hover:rounded-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-black hover:text-green-300"
           >
             <FontAwesomeIcon icon={faUser} className="mr-1" />
             Sign in
@@ -160,49 +160,57 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed top-0 w-full h-6 z-50">
-      <header className="backdrop-filter backdrop-blur-3xl rounded-3xl shadow-md">
-        <nav className="container mx-auto px-2 md:px-8">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-2">
-              <Link href="/" onClick={redirectToDashboard}>
-                <div className="h-8 w-8 cursor-pointer">
-                  <Image src="/logo.png" alt="Logo" width={32} height={32} />
-                </div>
-                <span>
-                  <h1 className="flex text-3xl font-bold cursor-pointer">Schield Centre</h1>
-                </span>
-              </Link>
-            </div>
-            <div className="md:hidden">
-              <button
-                type="button"
-                className="text-black hover:text-green-300 focus:outline-none"
-                onClick={toggleMenu}
-              >
-                <svg
-                  className="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className="hidden md:flex md:space-x-4">
+    <div className="fixed top-0 w-full z-50">
+      <header className="backdrop-blur-3xl shadow-md">
+        <nav className="container mx-auto px-4 py-3 md:flex md:items-center md:justify-between">
+          <div className="flex items-center justify-between">
+            <Link href="/" onClick={redirectToDashboard}>
+              <div className="h-8 w-8 cursor-pointer">
+                <Image src="/logo.png" alt="Logo" width={32} height={32} />
+              </div>
+            </Link>
+            <h1 className="text-2xl font-bold cursor-pointer">Schield Centre</h1>
+          </div>
+          <div className="flex items-center mt-4 md:mt-0">
+            <div className="hidden md:block">
               <ul className="flex space-x-4">
                 {renderMenuLinks()}
                 {renderDropdown()}
               </ul>
-              <div className="flex items-center space-x-4">{renderUserSection()}</div>
             </div>
+            <div className="flex items-center ml-4">
+              {renderUserSection()}
+            </div>
+          </div>
+          <div className="md:hidden">
+            <button
+              type="button"
+              className="text-black hover:text-green-300 focus:outline-none"
+              onClick={toggleMenu}
+            >
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h-16"
+                />
+              </svg>
+            </button>
+            {isMenuOpen && (
+              <div className="absolute top-0 right-0 bg-white text-gray-900 rounded-md shadow-lg p-2 mt-10">
+                <ul>
+                  {renderMenuLinks()}
+                  {renderDropdown()}
+                </ul>
+              </div>
+            )}
           </div>
         </nav>
       </header>
