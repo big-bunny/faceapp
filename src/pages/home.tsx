@@ -33,24 +33,24 @@ const Home = () => {
   const testimonials = [
     {
       id: 4,
-      quote: 'Testimonial 1 text.',
-      author: 'John Doe',
-      image: '/images/testimonials/testimonial1.jpg',
+      quote: 'I am grateful for the generous donation that has provided me with the opportunity to receive a quality education. It has changed my life and opened doors to a brighter future. Thank you!',
+      author: 'Jane, Grade 8',
+      image: '/images/testimonials/testimoial1.jpg',
     },
     {
       id: 5,
-      quote: 'Testimonial 2 text.',
-      author: 'Jane Smith',
+      quote: 'Thanks to the sponsorship, I have access to music lessons that allow me to pursue my passion for music. It has given me confidence and a sense of purpose. I am incredibly thankful!',
+      author: 'John, Grade 6',
       image: '/images/testimonials/testimonial2.jpg',
     },
     {
       id: 6,
-      quote: 'Testimonial 3 text.',
-      author: 'David Johnson',
-      image: '/images/testimonials/testimonial3.jpg',
+      quote: 'I want to express my gratitude for the support I have received. It has enabled me to participate in athletic competitions and develop my skills. Your sponsorship has made a significant impact on my life!',
+      author: 'Sarah, Grade 9',
+      image: '/images/testimonials/testimonial4.jpg',
     },
   ];
-
+  
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -86,32 +86,35 @@ const Home = () => {
       <div className="min-h-screen">
         <main className="max-w-4xl mx-auto py-8">
           <section className="text-center">
-            <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-red-500 rounded-full">Welcome to the Schield Centre</h1>
+            <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-green-500 rounded-full">Welcome to the Schield Centre</h1>
           </section>
 
           <section className="mt-12">
-            <h2 className="text-2xl align-self-lg-center font-bold mb-4">News</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 className="text-2xl font-bold mb-4">News</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
               {news.map((item) => (
                 <div key={item.id} className="bg-white shadow-lg rounded-lg p-6">
                   {item.pdf ? (
                     <div>
-                      <div className="mb-2">
-                        {item.preview && (
-                          <iframe
-                            src={item.preview}
-                            
-                            className="rounded-md w-full cursor-pointer"
-                            onClick={() => openPdfModal(item.pdf)}
-                          />
-                        )}
-                      </div>
                       <button
                         className="text-blue-600 hover:underline"
                         onClick={() => openPdfModal(item.pdf)}
                       >
                         {item.title}
                       </button>
+                      <div className="mb-0">
+                        {item.preview && (
+                         <object
+                         data={item.preview}
+                         type="application/pdf"
+                         width="100%"
+                         height="275px"
+                         onClick={() => openPdfModal(item.pdf)}
+                       >
+                         <p>PDF cannot be displayed</p>
+                       </object>
+                        )}
+                      </div>
                     </div>
                   ) : (
                     <a
@@ -141,22 +144,24 @@ const Home = () => {
           </section>
 
           <section className="mt-12">
-            <h2 className="text-2xl align-self-lg-center font-bold mb-4">Testimonials</h2>
+            <h2 className="text-3xl font-extrabold text-white mb-4">Testimonials</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {testimonials.map((item) => (
-                <div key={item.id} className="bg-white shadow-lg rounded-lg p-6">
-                  <p>{item.quote}</p>
-                  <div className="flex items-center mt-4">
-                    <Image
+                <div key={item.id} className="backdrop-blur-2xl shadow-lg rounded-lg p-6">
+                  <Image
                       src={item.image}
                       alt={item.author}
                       className="rounded-full w-12 h-12 object-cover mr-4"
                       width={48}
                       height={48}
-                    />
+                    /> 
                     <div>
-                      <p className="font-bold">{item.author}</p>
-                    </div>
+                      <p className="font-bold text-2xl text-green-300">{item.author}</p>
+                    </div> 
+                    <p className="font-bold text-xl text-gray-300">{item.quote}</p>
+                  <div className="flex items-center mt-4">
+                   
+                   
                   </div>
                 </div>
               ))}

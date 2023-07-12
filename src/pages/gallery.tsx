@@ -204,18 +204,18 @@ const Gallery: React.FC = () => {
       <DefaultLayout>
         <div className="min-h-screen">
           <main className="max-w-4xl mx-auto py-8">
-            <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-red-500 rounded-full">Gallery</h1>
+            <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-green-500 rounded-full p-4">Gallery</h1>
 
             {albums.map((album) => (
               <section key={album} className="mb-8">
-                <h2 className="text-xl font-semibold mb-4">{album}</h2>
+                <h2 className="text-2xl   text-white font-extrabold mb-4">{album}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {galleryItems
                     .filter((item) => item.album === album)
                     .map((item) => (
                       <div
                         key={item.id}
-                        className="bg-white rounded shadow p-6 cursor-pointer hover:shadow-lg transition duration-300"
+                        className="backdrop-blur-2xl rounded-2xl items-center shadow p-6 cursor-pointer hover:shadow-lg transition duration-300"
                         onClick={() => openModal(item)}
                       >
                         {item.type === 'image' && (

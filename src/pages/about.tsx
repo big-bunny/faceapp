@@ -55,7 +55,7 @@ const AboutPage = () => {
       <DefaultLayout>
         <div id="about" className="mt-20 rounded-lg text-gray-700 my-8">
           <div className="container mx-auto px-8 py-10">
-            <h1 className="text-4xl text-center font-extrabold bg-gradient-to-r from-red-500 rounded-full mb-8 text-white">ABOUT SCHIELD CENTRE</h1>
+            <h1 className="text-4xl text-center font-extrabold bg-gradient-to-r from-green-500 rounded-full mb-8 text-white">ABOUT SCHIELD CENTRE</h1>
             <div className="flex flex-col lg:flex-row">
               <div className="w-full lg:w-2/3 flex">
                 <header
@@ -77,7 +77,7 @@ const AboutPage = () => {
                     Schield Center is a school located in Kajiado, officially established in 2008 by Patricia Schield,
                     an American woman who made a courageous decision. Patricia sold everything she owned and utilized her
                     inheritance to initiate the school. Tragically, Patricia passed away in 2008 before witnessing her dreams
-                    come to fruition. Feeling like she had failed, Patricia&apos;s dying wish to Joseph Mboya was to establish the
+                    come to fruition. Feeling like she had failed, Patricia`s dying wish to Joseph Mboya was to establish the
                     school through trustees and fundraising efforts.
                   </p>
                 </div>

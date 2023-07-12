@@ -70,7 +70,7 @@ const SponsorProgram = () => {
     <DefaultLayout>
       <section id="sponsor-program" className="container">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <h1 className="text-4xl  text-white font-extrabold  bg-gradient-to-r from-red-500 rounded-full mb-8">
+          <h1 className="text-4xl  text-white font-extrabold  bg-gradient-to-r from-green-500 rounded-full mb-8">
             SPONSOR A PROGRAM
           </h1>
 
@@ -79,7 +79,7 @@ const SponsorProgram = () => {
             {programs.map((program) => (
               <div key={program.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
                 {/* Display program image */}
-                <Image className="h-48 w-full object-cover" src={program.image} alt={program.title} width={300} height={200} />
+               <Image className="h-48 w-full object-cover" src={program.image} alt={program.title} width={300} height={200} />
 
                 <div className="p-6">
                   {/* Display program title */}
