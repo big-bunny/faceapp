@@ -3,7 +3,7 @@ import Contactus from './Contactus';
 
 const Footer = () => {
   return (
-    <footer className=" text-white py-4 px-8 text-center">
+    <footer className="  content-center text-white py-4 px-8 text-center">
       <Contactus />
       <p>&copy; {new Date().getFullYear()} Schield Centre. All rights reserved.</p>
       <nav className="mt-4">

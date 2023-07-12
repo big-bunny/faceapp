@@ -8,18 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const DonationPage: React.FC = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      const session = await getSession();
-      if (!session) {
-        router.replace('/api/auth/signin');
-      }
-    };
-
-    checkAuthentication();
-  }, [router]);
 
   return (
     <DefaultLayout>

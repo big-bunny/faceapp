@@ -204,7 +204,7 @@ const Gallery: React.FC = () => {
       <DefaultLayout>
         <div className="min-h-screen">
           <main className="max-w-4xl mx-auto py-8">
-            <h1 className="text-3xl font-bold mb-4">Gallery</h1>
+            <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-red-500 rounded-full">Gallery</h1>
 
             {albums.map((album) => (
               <section key={album} className="mb-8">

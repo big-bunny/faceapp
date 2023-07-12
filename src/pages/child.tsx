@@ -1,103 +1,148 @@
-import DefaultLayout from '@/components/DefaultLayout';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import Link from 'next/link';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
+import DefaultLayout from '@/components/DefaultLayout';
+import { faDonate } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import router from 'next/router';
 
-interface ChildData {
+interface Student {
   id: number;
   name: string;
-  age: number;
+  grade: string;
+  bio: string;
   image: string;
-  description: string;
 }
 
-interface ChildState {
-  showFullDescription: boolean;
-}
+const Child = () => {
+  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
-export class Child extends Component<{}, ChildState> {
-  state: ChildState = {
-    showFullDescription: false,
+  const students: Student[] = [
+    {
+      id: 1,
+      name: 'Jane Smith',
+      grade: 'Grade 7',
+      bio: 'Jane is a talented artist who loves to express herself through her work. She hopes to one day pursue a career in art and design.',
+      image: '/images/students/student1.jpg',
+    },
+    {
+      id: 2,
+      name: 'John Doe',
+      grade: 'Grade 6',
+      bio: 'John is a bright and curious student who loves science and math. He dreams of becoming an engineer one day.',
+      image: '/images/students/student2.jpg',
+    },
+    {
+      id: 3,
+      name: 'Sarah Johnson',
+      grade: 'Grade 8',
+      bio: 'Sarah is an accomplished musician who plays several instruments. She hopes to one day become a professional musician.',
+      image: '/images/students/student3.jpg',
+    },
+    {
+      id: 4,
+      name: 'Michael Brown',
+      grade: 'Grade 9',
+      bio: 'Michael is a talented athlete who excels in multiple sports. He dreams of one day competing at the national level.',
+      image: '/images/students/student4.jpg',
+    },
+    {
+      id: 5,
+      name: 'Emily Davis',
+      grade: 'Grade 7',
+      bio: 'Emily is a passionate reader who loves to explore new worlds through books. She hopes to one day become a writer herself.',
+      image: '/images/students/student5.jpg',
+    },
+  ];
+
+  const showModal = (student: Student) => {
+    setSelectedStudent(student);
   };
 
-  toggleDescription = () => {
-    this.setState((prevState) => ({
-      showFullDescription: !prevState.showFullDescription,
-    }));
+  const truncateWords = (str: string, numWords: number) => {
+    const words = str.split(' ');
+    if (words.length <= numWords) {
+      return str;
+    } else {
+      const truncatedWords = words.slice(0, numWords);
+      return truncatedWords.join(' ') + '...';
+    }
   };
 
-  render() {
-    const children: ChildData[] = [
-      {
-        id: 1,
-        name: 'John Doe',
-        age: 8,
-        image: '/images/students/student1.jpg',
-        description: 'John is a talented young artist who loves to draw and paint. He dreams of becoming a professional artist one day.',
-      },
-      {
-        id: 2,
-        name: 'Jane Smith',
-        age: 10,
-        image: '/images/students/schield2.jpg',
-        description: 'Jane is a passionate soccer player. She hopes to join a local soccer team and improve her skills with proper training.',
-      },
-      // Add more children data as needed
-    ];
+  const redirectToDonatePage = () => {
+    router.push('/donatepage');
+  };
 
-    return (
-      <>
-        <DefaultLayout>
-          <div className="min-h-screen">
-            <main className="max-w-4xl mx-auto py-8">
-              <h1 className="text-3xl font-bold mb-4">Children in Need of Sponsorship</h1>
+  return (
+    <DefaultLayout>
+      <section id="child" className="container ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <h1 className="text-3xl font-extrabold  text-gray-900 inline-block rounded-full px-6 py-2">
+            SPONSOR CHILD
+          </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 text-2xl lg:grid-cols-3 gap-4">
-                {children.map((child) => (
-                  <div key={child.id} className="bg-white rounded shadow p-6">
-                    <div className="flex items-center mb-4">
-                      <Image
-                        src={child.image}
-                        alt={`Child ${child.id}`}
-                        width={80}
-                        height={80}
-                        className="w-20 h-20 rounded-full object-cover"
-                      />
-                      <div className="ml-4">
-                        <h2 className="text-lg font-bold">{child.name}</h2>
-                        <p className="text-gray-500">{child.age} years old</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 mb-4">
-                      {this.state.showFullDescription
-                        ? child.description
-                        : child.description.split(' ').slice(0, 5).join(' ')}
-                      {child.description.split(' ').length > 5 && (
-                        <button
-                          className="text-blue-500 hover:underline focus:outline-none"
-                          onClick={this.toggleDescription}
-                        >
-                          {this.state.showFullDescription ? 'Read Less' : 'Read More'}
-                        </button>
-                      )}
-                    </p>
-                    <Link
-                      href="/donatepage"
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Donate
-                    </Link>
-                  </div>
-                ))}
+          <div
+            className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+            style={{ backgroundImage: `url('/schieldgreen/backtoschool.jpg')` }}
+          >
+            {/* Display each student */}
+            {students.map((item) => (
+              <div key={item.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+                {/* Display student image */}
+                <img className="h-48 w-full object-cover" src={item.image} alt={item.name} />
+                <div className="p-6">
+                  {/* Display student name and grade */}
+                  <h2 className="text-xl font-semibold text-gray-900">{item.name}</h2>
+                  <p className="mt-2 text-green-600">{item.grade}</p>
+                  {/* Display truncated student bio */}
+                  <p
+                    className="text-lg leading-relaxed truncate-overflow"
+                    dangerouslySetInnerHTML={{ __html: truncateWords(item.bio, 5) }}
+                  ></p>
+                  {/* Button to show full bio and donation options */}
+                  <a
+                    href="#"
+                    className="text-green-500 inline-block mt-4 underline"
+                    onClick={() => showModal(item)}
+                  >
+                    Read more
+                  </a>
+                </div>
               </div>
-            </main>
+            ))}
           </div>
-        </DefaultLayout>
-      </>
-    );
-  }
-}
+        </div>
+
+        {/* Display selected student's full bio and donation options */}
+        {selectedStudent && (
+          <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center">
+            <div
+              className="max-w-md mx-auto rounded-lg overflow-hidden"
+              style={{ backgroundImage: `url('/schieldgreen/greenboard.jpg')` }}
+            >
+              <div className="p-4 mr-10 ml-20 mt-5">
+                <h2 className="text-3xl font-extrabold mb-2">{selectedStudent.name}</h2>
+                <p className="text-green-600 mb-4">{selectedStudent.grade}</p>
+                <p className="text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: selectedStudent.bio }}></p>
+                <div className="flex justify-end mt-8">
+                  <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg" onClick={() => setSelectedStudent(null)}>
+                    Close
+                  </button>
+                  {/* Display PayPal donation button */}
+                  <button
+                    onClick={redirectToDonatePage}
+                    className="text-white font-extrabold text-2xl hover:text-red-800 ml-4 flex items-center space-x-1"
+                  >
+                    <FontAwesomeIcon icon={faDonate} className="mr-0" />
+                    Donate
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+    </DefaultLayout>
+  );
+};
 
 export default Child;

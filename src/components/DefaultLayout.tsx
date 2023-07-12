@@ -11,7 +11,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
     <div
       className="min-h-screen bg-cover bg-center"
       style={{
-        backgroundImage: `url('/backgrounds/backy.jpg')`, // Replace with the path to your background image
+        backgroundImage: `url('/schieldgreen/greenwall.jpg')`, // Replace with the path to your background image
       }}
     >
       <Header />

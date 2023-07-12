@@ -40,7 +40,7 @@ const LoginPage = () => {
 
   return (
     <DefaultLayout>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-300 to-purple-500">
+      <div className="flex flex-col items-center justify-center  backdrop-blur-2xl">
         <div className="max-w-md px-4 py-8 bg-white shadow-lg rounded-lg">
           <h1 className="text-2xl font-bold text-center mb-4">
             Dear Shield&apos;s friend, login to continue 👍

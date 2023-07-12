@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth, { NextAuthOptions, User } from 'next-auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getPrismaClient } from '../db';
 import GithubProvider from 'next-auth/providers/github';
@@ -13,7 +13,6 @@ const options: NextAuthOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-     
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -26,7 +25,10 @@ const options: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const { username, password } = credentials as { username: string; password: string };
+        const { username, password } = credentials as {
+          username: string;
+          password: string;
+        };
 
         // Check if the user already exists
         const existingUser = await prisma.user.findUnique({
@@ -80,7 +82,6 @@ const options: NextAuthOptions = {
       return baseUrl;
     },
   },
-  events: {},
   debug: false,
 };
 
