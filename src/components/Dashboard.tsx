@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Image from 'next/image';
-import Calendar from 'react-calendar';
+
 
 export class Dashboard extends Component {
   render() {
@@ -20,6 +20,7 @@ export class Dashboard extends Component {
 
             {/* Centered image */}
             <div className="flex justify-center mb-8">
+              <p className="text-3xl text-white">this image will be replaced with one of the late Schield's</p>
               <Image src="/images/gallery/construction.jpg" alt="Centered Image" width={600} height={400} />
             </div>
 
@@ -53,7 +54,7 @@ export class Dashboard extends Component {
             {/* Live Calendar */}
             <div className="bg-white rounded-lg p-4 mt-8">
               <h2 className="text-xl font-bold mb-4">Upcoming Events</h2>
-              <Calendar />
+              
             </div>
           </div>
         </div>

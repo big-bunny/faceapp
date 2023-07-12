@@ -70,7 +70,7 @@ const SponsorProgram = () => {
     <DefaultLayout>
       <section id="sponsor-program" className="container">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <h1 className="text-3xl font-extrabold text-gray-900 inline-block rounded-full px-6 py-2">
+          <h1 className="text-4xl  text-white font-extrabold  bg-gradient-to-r from-red-500 rounded-full mb-8">
             SPONSOR A PROGRAM
           </h1>
 
