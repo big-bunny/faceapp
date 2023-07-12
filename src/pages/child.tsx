@@ -88,7 +88,8 @@ const Child = () => {
             {students.map((item) => (
               <div key={item.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
                 {/* Display student image */}
-                <img className="h-48 w-full object-cover" src={item.image} alt={item.name} />
+                <Image className="h-48 w-full object-cover" src={item.image} alt={item.name} width={300} height={200} />
+
                 <div className="p-6">
                   {/* Display student name and grade */}
                   <h2 className="text-xl font-semibold text-gray-900">{item.name}</h2>

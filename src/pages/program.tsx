@@ -79,7 +79,8 @@ const SponsorProgram = () => {
             {programs.map((program) => (
               <div key={program.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
                 {/* Display program image */}
-                <img className="h-48 w-full object-cover" src={program.image} alt={program.title} />
+                <Image className="h-48 w-full object-cover" src={program.image} alt={program.title} width={300} height={200} />
+
                 <div className="p-6">
                   {/* Display program title */}
                   <h2 className="text-xl font-semibold text-gray-900">{program.title}</h2>

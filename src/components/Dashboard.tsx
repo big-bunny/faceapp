@@ -20,7 +20,8 @@ export class Dashboard extends Component {
 
             {/* Centered image */}
             <div className="flex justify-center mb-8">
-              <p className="text-3xl text-white">this image will be replaced with one of the late Schield's</p>
+            <p className="text-3xl text-white">this image will be replaced with one of the late Schield&apos;s</p>
+
               <Image src="/images/gallery/construction.jpg" alt="Centered Image" width={600} height={400} />
             </div>
 
