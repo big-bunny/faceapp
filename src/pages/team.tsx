@@ -49,7 +49,7 @@ const Team: React.FC = () => {
       <DefaultLayout>
         <div className="min-h-screen">
           <main className="max-w-4xl mx-auto py-8">
-            <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-green-500 rounded-full">Our Team</h1>
+            <h1 className="text-4xl font-extrabold mb-4  p-3 bg-gradient-to-r from-green-500 rounded-full">Our Team</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {staffMembers.map((staffMember) => (
                 <div

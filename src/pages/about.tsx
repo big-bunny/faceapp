@@ -53,9 +53,9 @@ const AboutPage = () => {
   return (
     <>
       <DefaultLayout>
-        <div id="about" className="mt-20 rounded-lg text-gray-700 my-8">
+        <div id="about" className=" rounded-lg mt-0  text-gray-700 my-8">
           <div className="container mx-auto px-8 py-10">
-            <h1 className="text-4xl text-center font-extrabold bg-gradient-to-r from-green-500 rounded-full mb-8 text-white">ABOUT SCHIELD CENTRE</h1>
+            <h1 className="text-4xl  p-3 font-extrabold bg-gradient-to-r from-green-500 rounded-full mb-8 text-white">ABOUT SCHIELD CENTRE</h1>
             <div className="flex flex-col lg:flex-row">
               <div className="w-full lg:w-2/3 flex">
                 <header
@@ -63,7 +63,7 @@ const AboutPage = () => {
                   style={{ backgroundImage: `url('${currentCarousel.image}')` }}
                 >
                   <div className="bg-green-500 bg-opacity-25 px-4 py-8 md:px-12 rounded-3xl shadow-md border border-red-500">
-                    <div className="text-2xl bold text-black font-bold leading-relaxed">
+                    <div className="text-2xl font-extrabold text-black  leading-relaxed">
                       <p>{currentCarousel.text}</p>
                     </div>
                   </div>

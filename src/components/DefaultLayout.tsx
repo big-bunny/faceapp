@@ -9,11 +9,7 @@ interface DefaultLayoutProps {
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
     <div
-      className="min-h-screen bg-cover bg-center"
-      style={{
-        backgroundImage: `url('/schieldgreen/greenwall.jpg')`, // Replace with the path to your background image
-      }}
-    >
+      className="min-h-screen bg-cover bg-green-800">
       <Header />
       <div className="container mx-auto py-40">{children}</div>
       <Footer />

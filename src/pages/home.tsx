@@ -85,8 +85,8 @@ const Home = () => {
     <DefaultLayout>
       <div className="min-h-screen">
         <main className="max-w-4xl mx-auto py-8">
-          <section className="text-center">
-            <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-green-500 rounded-full">Welcome to the Schield Centre</h1>
+          <section className="">
+            <h1 className="text-4xl p-3 font-extrabold mb-4 bg-gradient-to-r from-green-500 rounded-full">Welcome to the Schield Centre</h1>
           </section>
 
           <section className="mt-12">
