@@ -33,21 +33,25 @@ const Home = () => {
   const testimonials = [
     {
       id: 4,
-      quote: 'I am grateful for the generous donation that has provided me with the opportunity to receive a quality education. It has changed my life and opened doors to a brighter future. Thank you!',
-      author: 'Jane, Grade 8',
+      quote: 'Stanley is currently in Grade 3 and is doing well. He came to us after his parent split and the mother was thrown out of the house with no where to go. Our head teacher was called as he was of the same tribe to see how the mother and children could be helped as they were found sitting on the side of the road in the rain.The mother had nothing except a small bag of clothes. We accepted Stanley into our program and a lovely lady from Carnavon in Western Australia has been assisting him. Initially he was very low in his academics and we put him back a class as he was struggling. After doing this he was able to stabilize and now doing very well. Thankyou Mrs J for your assistance.',
+      author: 'Mark Stanley',
       image: '/images/testimonials/testimoial1.jpg',
+      resultsChart: '/images/testimonials/MarkStanely .jpg',
+      videoUrl: '/images/testimonials/MarkStanely .mp4',
     },
     {
       id: 5,
-      quote: 'Thanks to the sponsorship, I have access to music lessons that allow me to pursue my passion for music. It has given me confidence and a sense of purpose. I am incredibly thankful!',
-      author: 'John, Grade 6',
+      quote: 'Tatiana is a bright girl currently in grade 4 doing very well in school. She  is from a single parent home, abandoned by her father who left her mother with 2 children and no job and no finances to look after the children. The grandmother who also lived with them got Covid and ended up in ICU - survived but so did a huge medical bill - which was left to the mother to deal with. We accepted Tatiana and her sister into our program. We are grateful for Miss C from Albany - Western Australia for assisting Tatiana to  learn, dream and have the possibility of achieving her best. Thanks very much.',
+      author: 'Tatiana',
       image: '/images/testimonials/testimonial2.jpg',
+      resultsChart: '/images/testimonials/Tatiana.jpeg',
+      videoUrl: '/images/testimonials/Tatiana.mp4',
     },
     {
       id: 6,
-      quote: 'I want to express my gratitude for the support I have received. It has enabled me to participate in athletic competitions and develop my skills. Your sponsorship has made a significant impact on my life!',
-      author: 'Sarah, Grade 9',
-      image: '/images/testimonials/testimonial4.jpg',
+      quote: 'Samuel was one of our first admissions to Schield when we opened in 2014. He was later joined by 3 siblings. We have assisted this family a lot, the mother is having 10 children and these were the last 4. She is HIV+ and with some mental issues, not being able to support all the children and especially with the cost of education, Finding food and rent was an uphill battle as the husband was of no help and everything was left to the mother. We realized that Sam was bright when he came to school he was 7 and never been to school - within 1 year he was reading. Consistently Sam topped the class throughout his time with us and last year completed his Primary leaving certificate and did well. He was called to a National School, and we were hopeful that he would win a scholarship - however this did not materialize. At the beginning of this year he was very stressed as he was very much wanting to continue his studies - when I realized that if nothing was done to help Sam that he would not join form 1 - I put out a message on social media and am grateful for the support that allowed us to get him into school. He is doing well and we are encouraging him to achieve his best. He is from a complicated family situation and has requested to stay with us during the holidays as there is no room at home and he cannot study. Sam has become like a 3rd son to us. We are grateful to the generous Australians who are assisting him to continue his education. Asante Sana.',
+      author: 'Samuel',
+      image: '/images/testimonials/form1.jpeg',
     },
   ];
   
@@ -69,16 +73,11 @@ const Home = () => {
   };
 
   const handleZoomIn = () => {
-    setZoomLevel((prevZoom) => prevZoom + 0.1);
+    setZoomLevel(prevZoom => prevZoom + 0.1);
   };
 
   const handleZoomOut = () => {
-    setZoomLevel((prevZoom) => {
-      if (prevZoom > 0.2) {
-        return prevZoom - 0.1;
-      }
-      return prevZoom;
-    });
+    setZoomLevel(prevZoom => (prevZoom > 0.2 ? prevZoom - 0.1 : prevZoom));
   };
 
   return (
@@ -102,19 +101,16 @@ const Home = () => {
                       >
                         {item.title}
                       </button>
-                      <div className="mb-0">
-                        {item.preview && (
-                         <object
-                         data={item.preview}
-                         type="application/pdf"
-                         width="100%"
-                         height="275px"
-                         onClick={() => openPdfModal(item.pdf)}
-                       >
-                         <p>PDF cannot be displayed</p>
-                       </object>
-                        )}
-                      </div>
+                      {item.preview && (
+                        <object
+                          data={item.preview}
+                          type="application/pdf"
+                          width="100%"
+                          height="275px"
+                        >
+                          <p>PDF cannot be displayed</p>
+                        </object>
+                      )}
                     </div>
                   ) : (
                     <a
@@ -149,26 +145,41 @@ const Home = () => {
               {testimonials.map((item) => (
                 <div key={item.id} className="backdrop-blur-2xl shadow-lg rounded-lg p-6">
                   <Image
-                      src={item.image}
-                      alt={item.author}
-                      className="rounded-full w-12 h-12 object-cover mr-4"
-                      width={48}
-                      height={48}
-                    /> 
-                    <div>
-                      <p className="font-bold text-2xl text-green-300">{item.author}</p>
-                    </div> 
-                    <p className="font-bold text-xl text-gray-300">{item.quote}</p>
+                    src={item.image}
+                    alt={item.author}
+                    className="rounded-full w-12 h-12 object-cover mr-4"
+                    width={48}
+                    height={48}
+                  />
+                  <div>
+                    <p className="font-bold text-2xl text-green-300">{item.author}</p>
+                  </div>
+                  <p className="font-bold text-xl text-gray-300">{item.quote}</p>
                   <div className="flex items-center mt-4">
-                   
-                   
+                    <div className="mr-4">
+                      <h3 className="font-semibold text-lg text-white">Results</h3>
+                      {item.resultsChart && (
+                        <img
+                          src={item.resultsChart}
+                          alt={`${item.author}'s Results Chart`}
+                          className="mb-4"
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg text-white">Video Testimonies</h3>
+                      {item.videoUrl && (
+                        <video width="100%" controls>
+                          <source src={item.videoUrl} type="video/mp4" />
+                        </video>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* PDF Modal */}
           {selectedPdf && (
             <div
               className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
@@ -180,14 +191,12 @@ const Home = () => {
             </div>
           )}
 
-          {/* Image Modal */}
           {selectedImage && (
             <div
               className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
               onClick={closeModals}
             >
               <div className="bg-white rounded-lg p-4 w-full max-w-4xl mx-auto">
-                {/* Render the image content here */}
                 <Image
                   src={selectedImage}
                   alt="Selected Image"

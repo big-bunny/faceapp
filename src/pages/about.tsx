@@ -71,7 +71,7 @@ const AboutPage = () => {
               </div>
 
               <div className="w-full lg:w-1/3 px-4 border-red-500  py-8 lg:py-0">
-                <div className="text-3xl backdrop-blur-3xl text-gray-900 text-center py-10">
+                <div className="text-3xl bg-white text-gray-900 text-center py-10">
                   <h1 className='text-4xl bold text-white '>HISORY</h1>
                   <p>
                     Schield Center is a school located in Kajiado, officially established in 2008 by Patricia Schield,

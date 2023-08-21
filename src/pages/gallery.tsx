@@ -146,12 +146,7 @@ const galleryItems: GalleryItem[] = [
     url: 'https://www.youtube.com/watch?v=Moyyh05Vr7M',
     album: 'YouTube Album',
   },
-  {
-    id: 14,
-    type: 'youtube',
-    url: 'https://www.youtube.com/watch?v=TO35vEnSns4',
-    album: 'YouTube Album',
-  },
+ 
   {
     id: 7,
     type: 'video',
