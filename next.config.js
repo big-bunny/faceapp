@@ -18,9 +18,4 @@ module.exports = {
 
     return config;
   },
-  compilers: {
-    prisma: {
-      schema: './prisma/schema.prisma',
-    },
-  },
 };
