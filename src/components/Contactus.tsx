@@ -22,7 +22,7 @@ const ContactSection: React.FC = () => {
     {
       title: 'Phone',
       icon: faPhone,
-      address: '+254725224398',
+      address: ',,,',
     },
     {
       title: 'E-mail',
