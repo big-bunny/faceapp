@@ -154,8 +154,78 @@ const galleryItems: GalleryItem[] = [
     album: 'Video Album',
     videoUrl: '/videos/video1.mp4',
   },
-  
-  
+ {
+    id: 25,
+    type: 'image',
+    url: '/images/gallery/community/judy219.JPG',
+    album: '2019',
+  }, 
+  {
+    id: 26,
+    type: 'image',
+    url: '/images/gallery/community/monkeybars.JPG',
+    album: '2019',
+  },
+  {
+    id: 27,
+    type: 'image',
+    url: '/images/gallery/community/agric1.JPG',
+    album: '2019',
+  },
+    {
+    id: 28,
+    type: 'image',
+    url: '/images/gallery/community/agric2.JPG',
+    album: '2019',
+  },
+    {
+    id: 29,
+    type: 'image',
+    url: '/images/gallery/community/agric3.JPG',
+    album: '2019',
+  },
+     {
+    id: 30,
+    type: 'image',
+    url: '/images/gallery/community/pe1.JPG',
+    album: 'Physical Ed',
+  },
+      {
+    id: 31,
+    type: 'image',
+    url: '/images/gallery/community/pe2.JPG',
+    album: 'Physical Ed',
+  },
+    {
+    id: 35,
+    type: 'image',
+    url: '/images/gallery/community/pracs.JPG',
+    album: 'Practicals',
+  },
+     {
+    id: 32,
+    type: 'image',
+    url: '/images/gallery/community/pe3.JPG',
+    album: 'Physical Ed',
+  },
+   {
+    id: 32,
+    type: 'image',
+    url: '/images/gallery/community/pe4.JPG',
+    album: 'Physical Ed',
+  },
+   {
+    id: 33,
+    type: 'image',
+    url: '/images/gallery/community/firstaid1.JPG',
+    album: 'First AID',
+  },
+   {
+    id: 34,
+    type: 'image',
+    url: '/images/gallery/community/firstaid2.JPG',
+    album: 'First AID',
+  },
 
   // Add more gallery items as needed
 ];
